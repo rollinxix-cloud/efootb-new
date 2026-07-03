@@ -1,0 +1,345 @@
+body { 
+    font-family: 'Impact', 'Arial Black', sans-serif; 
+    background: #02060b; 
+    color: white; 
+    display: flex; 
+    justify-content: center; 
+    padding: 20px; 
+}
+.app-container { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 15px;
+    max-width: 800px;
+    width: 100%;
+}
+h1 {
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, #00ffcc, #ffbc00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 5px 0;
+}
+
+/* Tournament Selection Navigation styling */
+.tournament-nav {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 5px;
+}
+.nav-btn {
+    background: #0d1926;
+    border: 1px solid #1c334d;
+    color: #a3b8cc;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+}
+.nav-btn.active {
+    background: linear-gradient(135deg, #00ffcc 0%, #00a3ff 100%);
+    color: #000;
+    border-color: #00ffcc;
+    box-shadow: 0 0 12px rgba(0, 255, 204, 0.3);
+}
+
+.workspace {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+    width: 100%;
+}
+.controls { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px; 
+    width: 340px; 
+    background: #09111a;
+    padding: 18px;
+    border-radius: 16px;
+    border: 1px solid #142436;
+    box-sizing: border-box;
+}
+.control-label {
+    color: #7d93a8; 
+    font-size: 10px; 
+    text-transform: uppercase;
+    margin-bottom: -5px;
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+}
+.slider-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #050b12;
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    color: #8fa0ac;
+}
+.slider-group input { width: 65%; accent-color: #00ffcc; }
+input, select { 
+    padding: 10px; 
+    border-radius: 8px; 
+    border: 1px solid #1c324a; 
+    background: #050b12;
+    color: white;
+    font-size: 13px;
+}
+input:focus, select:focus { outline: none; border-color: #00ffcc; }
+
+/* Dynamic Performance panel elements */
+.hidden-panel {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    background: rgba(0, 255, 204, 0.04);
+    border: 1px dashed rgba(0, 255, 204, 0.2);
+    padding: 10px;
+    border-radius: 10px;
+}
+.hidden-panel.visible { display: flex; }
+.stats-input-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+}
+.stats-input-grid input { padding: 8px; text-align: center; font-size: 11px; }
+
+.download-btn { 
+    padding: 14px; 
+    background: linear-gradient(135deg, #ffbc00 0%, #ff6a00 100%); 
+    color: #000; 
+    border: none; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    font-weight: 900; 
+    text-transform: uppercase;
+    margin-top: 5px;
+    box-shadow: 0 5px 15px rgba(255, 106, 0, 0.2);
+}
+
+/* --- THE PRISTINE GENERATOR TARGET OBJECT --- */
+.card {
+    width: 340px; 
+    height: 495px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    box-sizing: border-box;
+    background: #040911;
+}
+
+/* Structural Background Underlays */
+.card-bg, .card-glow-vortex, .card-watermark {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+}
+.card-bg { z-index: 1; }
+.card-watermark {
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.03);
+    text-transform: uppercase;
+    transform: rotate(-25deg);
+    white-space: nowrap;
+    pointer-events: none;
+}
+.card-glow-vortex { z-index: 3; pointer-events: none; }
+
+/* -------------------------------------------
+   SECTION THEMES (Changes Card Enclosures dynamically)
+------------------------------------------- */
+
+/* MODE 1: BASE OVERALL HOMEPAGE THEMES */
+.card.home.epic { border: 5px solid #62ff00; }
+.card.home.epic .card-bg { background: linear-gradient(180deg, #133d17 0%, #051a09 60%, #010702 100%); }
+.card.home.epic .card-glow-vortex { background: radial-gradient(circle at 50% 35%, rgba(98, 255, 0, 0.4) 0%, transparent 70%); }
+
+.card.home.trending { border: 5px solid #ff0055; }
+.card.home.trending .card-bg { background: linear-gradient(180deg, #440718 0%, #170106 60%, #050001 100%); }
+.card.home.trending .card-glow-vortex { background: radial-gradient(circle at 50% 35%, rgba(255, 0, 85, 0.45) 0%, transparent 70%); }
+
+.card.home.standard { border: 5px solid #00d2ff; }
+.card.home.standard .card-bg { background: linear-gradient(180deg, #081f33 0%, #020e1a 60%, #000408 100%); }
+.card.home.standard .card-glow-vortex { background: radial-gradient(circle at 50% 35%, rgba(0, 210, 255, 0.4) 0%, transparent 70%); }
+
+/* MODE 2: ELITE DIVISION SEASON 7 (Silver/Neon Cyan Theme) */
+.card.elite-division { border: 5px solid #00ffcc; }
+.card.elite-division .card-bg { background: linear-gradient(180deg, #112d33 0%, #051417 60%, #010608 100%); }
+.card.elite-division .card-glow-vortex { 
+    background: 
+        radial-gradient(circle at 10% 20%, rgba(0, 255, 212, 0.25) 0%, transparent 40%),
+        radial-gradient(circle at 90% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 45%),
+        radial-gradient(circle at 50% 40%, rgba(0, 255, 204, 0.3) 0%, transparent 65%); 
+}
+
+/* MODE 3: ELITE LEAGUE (Glowing Luxury Gold Regal Theme) */
+.card.elite-league { border: 5px solid #ffbb00; }
+.card.elite-league .card-bg { background: linear-gradient(180deg, #423202 0%, #171101 60%, #050300 100%); }
+.card.elite-league .card-glow-vortex { 
+    background: 
+        radial-gradient(circle at 50% 25%, rgba(255, 187, 0, 0.5) 0%, transparent 60%),
+        linear-gradient(90deg, rgba(255,215,0,0.03) 1px, transparent 1px);
+    background-size: 20px 100%;
+}
+
+/* MODE 4: PES LEAGUE CAMP (Grid-Accented Cyber Radar Theme) */
+.card.pes-camp { border: 5px solid #adff00; }
+.card.pes-camp .card-bg { background: linear-gradient(180deg, #243003 0%, #0d1201 60%, #030500 100%); }
+.card.pes-camp .card-glow-vortex { 
+    background: 
+        linear-gradient(rgba(173,255,0,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(173,255,0,0.04) 1px, transparent 1px);
+    background-size: 15px 15px;
+}
+
+/* MODE 5: ULTIMATE PLAYER KNOCKOUT (Deep Crimson Split Fire Theme) */
+.card.ultimate-player { border: 5px solid #ff1100; }
+.card.ultimate-player .card-bg { background: linear-gradient(180deg, #470400 0%, #1c0100 60%, #050000 100%); }
+.card.ultimate-player .card-glow-vortex { 
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(255, 17, 0, 0.4) 0%, transparent 50%),
+        radial-gradient(circle at 70% 40%, rgba(255, 106, 0, 0.3) 0%, transparent 55%);
+}
+
+/* -------------------------------------------
+   INTERFACE TEXT & STAMP ELEMENTS
+------------------------------------------- */
+
+/* Master Frame Setup */
+.player-frame {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 4;
+    overflow: hidden;
+}
+.player-graphic {
+    position: absolute;
+    display: none;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+.player-fade-overlay {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 150px;
+    z-index: 5;
+    pointer-events: none;
+}
+/* Connects the transparent fade layer color palette seamlessly into theme base colors */
+.card.home.epic .player-fade-overlay { background: linear-gradient(to top, #010702 0%, rgba(1,7,2,0) 100%); }
+.card.home.trending .player-fade-overlay { background: linear-gradient(to top, #050001 0%, rgba(5,0,1,0) 100%); }
+.card.home.standard .player-fade-overlay { background: linear-gradient(to top, #000408 0%, rgba(0,4,8,0) 100%); }
+.card.elite-division .player-fade-overlay { background: linear-gradient(to top, #010608 0%, rgba(1,6,8,0) 100%); }
+.card.elite-league .player-fade-overlay { background: linear-gradient(to top, #050300 0%, rgba(5,3,0,0) 100%); }
+.card.pes-camp .player-fade-overlay { background: linear-gradient(to top, #030500 0%, rgba(3,5,0,0) 100%); }
+.card.ultimate-player .player-fade-overlay { background: linear-gradient(to top, #050000 0%, rgba(5,0,0,0) 100%); }
+
+/* High-Quality Premium Condition Badges */
+.form-badge {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    z-index: 10;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.5);
+    display: none;
+}
+.form-badge.potw { display: block; background: #ffbc00; color: #000; border: 1px solid #fff; }
+.form-badge.form-a { display: block; background: #ff0055; color: #fff; border: 1px solid #ff80aa; }
+.form-badge.form-b { display: block; background: #00ffcc; color: #000; border: 1px solid #fff; }
+
+/* The Live Performance Data Bar Overlay */
+.live-perf-bar {
+    position: absolute;
+    bottom: 142px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 86%;
+    display: none; /* Auto revealed via JS for tournament modes */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    z-index: 10;
+}
+.live-perf-bar.visible { display: grid; }
+.stat-pill {
+    background: rgba(4, 9, 17, 0.85);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3px 0;
+}
+.stat-pill .label { font-size: 8px; color: #7d93a8; font-family: sans-serif; font-weight: bold; }
+.stat-pill span:not(.label) { font-size: 13px; font-weight: 900; color: #fff; }
+.stat-pill.rating { background: rgba(255, 188, 0, 0.15); border-color: #ffbc00; }
+.stat-pill.rating span:not(.label) { color: #ffbc00; }
+
+/* Global Fonts/Details formatting */
+.rating-badge { position: absolute; top: 12px; left: 20px; z-index: 6; }
+#cardRating { font-size: 82px; font-weight: 900; line-height: 1; }
+.card.home.epic #cardRating { color: #fff600; text-shadow: 3px 3px 0px #aa6f00, 4px 4px 8px rgba(0,0,0,0.7); }
+.card.home.trending #cardRating { color: #ffffff; text-shadow: 3px 3px 0px #ff0055, 4px 4px 8px rgba(0,0,0,0.7); }
+.card.home.standard #cardRating { color: #00d2ff; text-shadow: 2px 2px 0px #004466, 4px 4px 6px rgba(0,0,0,0.7); }
+.card.elite-division #cardRating { color: #fff; text-shadow: 3px 3px 0px #00ffcc, 4px 4px 8px rgba(0,0,0,0.7); }
+.card.elite-league #cardRating { color: #ffbb00; text-shadow: 3px 3px 0px #574100, 4px 4px 8px rgba(0,0,0,0.7); }
+.card.pes-camp #cardRating { color: #adff00; text-shadow: 2px 2px 0px #385200, 4px 4px 6px rgba(0,0,0,0.7); }
+.card.ultimate-player #cardRating { color: #fff; text-shadow: 3px 3px 0px #ff1100, 4px 4px 8px rgba(0,0,0,0.7); }
+
+.card-details { position: absolute; bottom: 82px; width: 100%; text-align: center; z-index: 6; }
+.season-year { font-size: 11px; color: #ffbc00; font-weight: bold; letter-spacing: 1px; text-shadow: 2px 2px 4px rgba(0,0,0,0.9); margin-bottom: 2px; }
+.player-name {
+    font-size: 24px; color: #ffffff; text-transform: uppercase; letter-spacing: -0.5px;
+    text-shadow: 2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000, 0px 4px 8px rgba(0,0,0,0.8);
+}
+
+/* Canvas-Safe Pedestal Bar */
+.podium-pedestal {
+    position: absolute;
+    bottom: 12px; left: 50%; transform: translateX(-50%);
+    width: 84%; height: 48px;
+    background: rgba(5, 11, 18, 0.96);
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 12px; z-index: 7;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+}
+.card.home.epic .podium-pedestal { border-color: #62ff00; }
+.card.home.trending .podium-pedestal { border-color: #ff0055; }
+.card.home.standard .podium-pedestal { border-color: #00d2ff; }
+.card.elite-division .podium-pedestal { border-color: #00ffcc; }
+.card.elite-league .podium-pedestal { border-color: #ffbb00; }
+.card.pes-camp .podium-pedestal { border-color: #adff00; }
+.card.ultimate-player .podium-pedestal { border-color: #ff1100; }
+
+.podium-content { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; }
+.efootball-logo-sphere {
+    background: linear-gradient(135deg, #00f0ff, #0055ff); color: white;
+    font-size: 11px; width: 16px; height: 16px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: bold; margin-bottom: 1px; box-shadow: 0 0 6px #00f0ff;
+}
+.stars-row { font-size: 11px; letter-spacing: 2px; }
