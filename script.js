@@ -1,15 +1,11 @@
-let uploadedImgData = '';
-
 function handleTournamentChange() {
     const selectedTourney = document.getElementById('tournamentSelector').value;
     const watermark = document.getElementById('cardWatermark');
     const s7Panel = document.getElementById('season7Panel');
     const scoreBadge = document.getElementById('cardScoreBadge');
 
-    // Update internal card watermarking string values dynamically
     watermark.innerText = selectedTourney;
 
-    // Interface toggles specific to Season 7 active parameters
     if (selectedTourney === 'ELITE DIV S7') {
         s7Panel.classList.remove('hidden');
         scoreBadge.classList.remove('hidden-element');
@@ -20,23 +16,26 @@ function handleTournamentChange() {
     updateCard();
 }
 
+// Fixed: Uses CSS transform properties so html2canvas renders image scaling accurately
 function adjustImage() {
     const zoom = document.getElementById('zoomInput').value;
     const posX = document.getElementById('posXInput').value;
     const posY = document.getElementById('posYInput').value;
-    const frame = document.getElementById('playerFrame');
+    const imgElement = document.getElementById('playerImage');
     
-    frame.style.backgroundSize = `${zoom}%`;
-    frame.style.backgroundPosition = `${posX}% ${posY}%`;
+    if(imgElement.src && !imgElement.src.includes('data:image/gif;blank')) {
+        imgElement.style.transform = `translate(${posX}px, ${posY}px) scale(${zoom})`;
+    }
 }
 
 function handleImageUpload(e) {
     const reader = new FileReader();
     reader.onload = function(event) {
-        uploadedImgData = event.target.result;
-        const frame = document.getElementById('playerFrame');
-        frame.style.backgroundImage = `url(${uploadedImgData})`;
-        adjustImage(); // Reset layout alignments
+        const imgElement = document.getElementById('playerImage');
+        imgElement.src = event.target.result;
+        imgElement.onload = function() {
+            adjustImage(); // Initialize alignments
+        };
     }
     if (e.target.files[0]) {
         reader.readAsDataURL(e.target.files[0]);
@@ -44,21 +43,25 @@ function handleImageUpload(e) {
 }
 
 function updateCard() {
-    // Sync textual metadata structures safely
+    // Identity values
     document.getElementById('cardName').innerText = document.getElementById('nameInput').value.trim().toUpperCase() || 'PLAYER NAME';
     document.getElementById('cardRating').innerText = document.getElementById('ratingInput').value || '76';
     document.getElementById('cardYear').innerText = document.getElementById('yearInput').value.trim() || '2026';
     
-    // Sync metrics structures safely
+    // Core stats
     document.getElementById('cardGS').innerText = document.getElementById('gsInput').value || '35';
     document.getElementById('cardCS').innerText = document.getElementById('csInput').value || '12';
     document.getElementById('cardAMR').innerText = document.getElementById('amrInput').value || '7.8';
     
-    // Card skin type management variations
+    // Dynamic eFootball Star Rating logic
+    const totalStars = parseInt(document.getElementById('starRatingInput').value) || 5;
+    document.getElementById('cardStars').innerText = '⭐'.repeat(totalStars);
+    
+    // Card Style variants
     const card = document.getElementById('card');
     card.className = `card ${document.getElementById('cardStyleInput').value}`;
 
-    // Manage Season 7 metadata if configured active
+    // Active Season 7 state settings
     const selectedTourney = document.getElementById('tournamentSelector').value;
     if (selectedTourney === 'ELITE DIV S7') {
         const md = document.getElementById('mdSelector').value;
@@ -70,13 +73,12 @@ function updateCard() {
 function downloadCard() {
     const targetElement = document.getElementById('card');
     
-    // Hard check parameters forcing canvas background processing stability
     html2canvas(targetElement, {
         scale: 3, 
         useCORS: true,
         allowTaint: true,
         backgroundColor: null,
-        removeContainer: true
+        logging: false
     }).then(canvas => {
         const link = document.createElement('a');
         const filename = document.getElementById('nameInput').value.trim().toLowerCase() || 'player';
@@ -86,7 +88,6 @@ function downloadCard() {
     });
 }
 
-// System baseline initialization
 window.onload = function() {
     updateCard();
 };

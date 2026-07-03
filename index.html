@@ -36,6 +36,14 @@
                     <option value="standard">🔵 Standard Edition</option>
                 </select>
 
+                <!-- Star Rating Feature Selector -->
+                <select id="starRatingInput" onchange="updateCard()">
+                    <option value="5">⭐⭐⭐⭐⭐ 5 Stars</option>
+                    <option value="4">⭐⭐⭐⭐ 4 Stars</option>
+                    <option value="3">⭐⭐⭐ 3 Stars</option>
+                    <option value="2">⭐⭐ 2 Stars</option>
+                </select>
+
                 <!-- Core Stats Grid -->
                 <div class="stats-input-grid">
                     <input type="number" id="gsInput" placeholder="GS" oninput="updateCard()">
@@ -43,7 +51,7 @@
                     <input type="text" id="amrInput" placeholder="AMR" oninput="updateCard()">
                 </div>
 
-                <!-- SPECIAL SEASON 7 MATCHDAY PANEL (Triggers when S7 is active) -->
+                <!-- SPECIAL SEASON 7 MATCHDAY PANEL -->
                 <div id="season7Panel" class="special-panel hidden">
                     <h3>⚠️ Season 7 Active Match Settings</h3>
                     <div class="s7-grid">
@@ -56,15 +64,15 @@
                     </div>
                 </div>
 
-                <!-- Image Adjustments Layout -->
+                <!-- Image Adjustments Layout (Modified to use pixel shifting for export safety) -->
                 <div class="adjust-tools">
                     <span class="tool-title">🖼️ Image Customization</span>
                     <label>Zoom Graphic:</label>
-                    <input type="range" id="zoomInput" min="50" max="300" value="100" oninput="adjustImage()">
+                    <input type="range" id="zoomInput" min="0.5" max="3.5" step="0.05" value="1.0" oninput="adjustImage()">
                     <label>Move Left / Right:</label>
-                    <input type="range" id="posXInput" min="0" max="100" value="50" oninput="adjustImage()">
+                    <input type="range" id="posXInput" min="-300" max="300" step="1" value="0" oninput="adjustImage()">
                     <label>Move Up / Down:</label>
-                    <input type="range" id="posYInput" min="0" max="100" value="50" oninput="adjustImage()">
+                    <input type="range" id="posYInput" min="-300" max="300" step="1" value="0" oninput="adjustImage()">
                 </div>
 
                 <div class="file-upload-wrapper">
@@ -80,10 +88,16 @@
                     <div class="card-bg"></div>
                     <div class="card-watermark" id="cardWatermark">OVERALL</div>
                     
-                    <!-- Rendered Adjustable Player Graphic Frame -->
-                    <div class="player-frame" id="playerFrame"></div>
+                    <!-- Fixed: Structural container containing a true img node to prevent download shrinking -->
+                    <div class="player-frame" id="playerFrameContainer">
+                        <img id="playerImage" src="data:image/gif;blank" alt="Player">
+                    </div>
                     
-                    <div class="rating-badge"><span id="cardRating">76</span></div>
+                    <!-- Core Rating & Stars layout cluster -->
+                    <div class="rating-cluster">
+                        <div class="rating-badge"><span id="cardRating">76</span></div>
+                        <div class="stars-badge" id="cardStars">⭐⭐⭐⭐⭐</div>
+                    </div>
                     
                     <!-- Stats Display Columns -->
                     <div class="live-perf-bar">
@@ -92,10 +106,10 @@
                         <div class="stat-pill amr-highlight"><span class="label">AMR</span><span id="cardAMR">7.8</span></div>
                     </div>
 
-                    <!-- Dynamic Scoreline Notification Banner for Season 7 Match Days -->
+                    <!-- Dynamic Scoreline Notification Banner -->
                     <div id="cardScoreBadge" class="scoreline-badge hidden-element">MD 2 | 3-1</div>
                     
-                    <!-- Solid Anchor Block preventing Name & Season download omission -->
+                    <!-- Solid Anchor Identity Block -->
                     <div class="card-identity-block">
                         <div class="season-year" id="cardYear">2026</div>
                         <div class="player-name" id="cardName">PLAYER NAME</div>
