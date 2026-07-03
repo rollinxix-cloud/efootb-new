@@ -1,64 +1,42 @@
-let currentCategory = 'OVERALL';
-let uploadedImgData = '';
-
-function switchSection(sectionId) {
-    // Update menu UI highlights
-    document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-    event.currentTarget.classList.add('active');
+function adjustImage() {
+    const zoom = document.getElementById('zoomInput').value;
+    const posX = document.getElementById('posXInput').value;
+    const posY = document.getElementById('posYInput').value;
+    const frame = document.getElementById('playerFrame');
     
-    // Process section ID name values cleanly
-    currentCategory = sectionId.replace('-', ' ').toUpperCase();
-    document.getElementById('cardWatermark').innerText = currentCategory;
-    updateCard();
+    frame.style.backgroundSize = `${zoom}%`;
+    frame.style.backgroundPosition = `${posX}% ${posY}%`;
 }
 
 function handleImageUpload(e) {
     const reader = new FileReader();
     reader.onload = function(event) {
-        uploadedImgData = event.target.result;
-        document.getElementById('cardPlayerImg').src = uploadedImgData;
+        document.getElementById('playerFrame').style.backgroundImage = `url(${event.target.result})`;
     }
-    if (e.target.files[0]) {
-        reader.readAsDataURL(e.target.files[0]);
-    }
+    if (e.target.files[0]) reader.readAsDataURL(e.target.files[0]);
+}
+
+function switchSection(title) {
+    document.getElementById('cardWatermark').innerText = title;
+    updateCard();
 }
 
 function updateCard() {
-    // Grab text inputs
-    const name = document.getElementById('nameInput').value.trim().toUpperCase() || 'GAMER NAME';
-    const rating = document.getElementById('ratingInput').value || '105';
-    const season = document.getElementById('yearInput').value.trim() || '2026/27';
+    document.getElementById('cardName').innerText = document.getElementById('nameInput').value.toUpperCase() || 'PLAYER NAME';
+    document.getElementById('cardRating').innerText = document.getElementById('ratingInput').value || '77';
+    document.getElementById('cardYear').innerText = document.getElementById('yearInput').value || '2026';
+    document.getElementById('cardGS').innerText = document.getElementById('gsInput').value || '0';
+    document.getElementById('cardCS').innerText = document.getElementById('csInput').value || '0';
+    document.getElementById('cardAMR').innerText = document.getElementById('amrInput').value || '0.0';
     
-    // Grab dynamic stats inputs
-    const gs = document.getElementById('gsInput').value || '0';
-    const cs = document.getElementById('csInput').value || '0';
-    const amr = document.getElementById('amrInput').value || '0.00';
-    
-    // Dynamic theme changer logic
-    const cardElement = document.getElementById('card');
-    const selectedStyle = document.getElementById('cardStyleInput').value;
-    
-    cardElement.className = `card ${selectedStyle}`;
-    
-    // Push updates live into card structures
-    document.getElementById('cardName').innerText = name;
-    document.getElementById('cardRating').innerText = rating;
-    document.getElementById('cardYear').innerText = season;
-    document.getElementById('cardGS').innerText = gs;
-    document.getElementById('cardCS').innerText = cs;
-    document.getElementById('cardAMR').innerText = amr;
+    const card = document.getElementById('card');
+    card.className = `card ${document.getElementById('cardStyleInput').value}`;
 }
 
 function downloadCard() {
-    const card = document.getElementById('card');
-    html2canvas(card, {
-        useCORS: true,
-        scale: 3, // Premium crystal clear export resolution multiplier
-        backgroundColor: null
-    }).then(canvas => {
+    html2canvas(document.getElementById('card'), { scale: 3 }).then(canvas => {
         const link = document.createElement('a');
-        const nameFile = document.getElementById('nameInput').value.trim().toLowerCase() || 'player';
-        link.download = `${nameFile}-perf-card.png`;
+        link.download = 'tournament-card.png';
         link.href = canvas.toDataURL('image/png');
         link.click();
     });
