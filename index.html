@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tournament Card Generator</title>
+    <title>eFootball Tournament Pro Hub</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
@@ -11,61 +11,95 @@
     <div class="app-container">
         <h1>TOURNAMENT HUB</h1>
         
-        <div class="tournament-nav">
-            <button class="nav-btn" onclick="switchSection('OVERALL')">🏠 OVERALL</button>
-            <button class="nav-btn" onclick="switchSection('ELITE DIV S7')">🛡️ ELITE S7</button>
-            <button class="nav-btn" onclick="switchSection('ULTIMATE PLAYER')">🔥 ULTIMATE</button>
+        <!-- Interactive Category Selectors -->
+        <div class="navigation-container">
+            <label for="tournamentSelector">SELECT ACTIVE TOURNAMENT:</label>
+            <select id="tournamentSelector" onchange="handleTournamentChange()">
+                <option value="OVERALL">🏠 1. Overall</option>
+                <option value="ELITE LEAGUE">💎 2. Elite League</option>
+                <option value="ELITE DIVISION LEAGUE">🛡️ 3. Elite Division League</option>
+                <option value="ELITE DIV S7">🏆 4. Elite Division League (Season 7)</option>
+                <option value="PES LEAGUE CAMP">⛺ 5. PES League Camp</option>
+                <option value="ULTIMATE PLAYER">🔥 6. Ultimate Player</option>
+            </select>
         </div>
 
         <div class="workspace">
             <div class="controls">
                 <input type="text" id="nameInput" placeholder="Gamer Name" oninput="updateCard()">
                 <input type="number" id="ratingInput" placeholder="Rating" oninput="updateCard()">
-                <input type="text" id="yearInput" placeholder="Season" oninput="updateCard()">
+                <input type="text" id="yearInput" placeholder="Season / Year" oninput="updateCard()">
                 
                 <select id="cardStyleInput" onchange="updateCard()">
-                    <option value="epic">✨ Epic</option>
-                    <option value="trending">🔥 Trending</option>
-                    <option value="standard">🔵 Standard</option>
+                    <option value="epic">✨ Epic Edition</option>
+                    <option value="trending">🔥 Trending Edition</option>
+                    <option value="standard">🔵 Standard Edition</option>
                 </select>
 
+                <!-- Core Stats Grid -->
                 <div class="stats-input-grid">
                     <input type="number" id="gsInput" placeholder="GS" oninput="updateCard()">
                     <input type="number" id="csInput" placeholder="CS" oninput="updateCard()">
                     <input type="text" id="amrInput" placeholder="AMR" oninput="updateCard()">
                 </div>
 
-                <!-- IMAGE ADJUSTMENT TOOLS -->
+                <!-- SPECIAL SEASON 7 MATCHDAY PANEL (Triggers when S7 is active) -->
+                <div id="season7Panel" class="special-panel hidden">
+                    <h3>⚠️ Season 7 Active Match Settings</h3>
+                    <div class="s7-grid">
+                        <select id="mdSelector" onchange="updateCard()">
+                            <option value="MD 2">Match Day 2 (MD 2)</option>
+                            <option value="MD 4">Match Day 4 (MD 4)</option>
+                            <option value="MD 6">Match Day 6 (MD 6)</option>
+                        </select>
+                        <input type="text" id="scorelineInput" placeholder="Scoreline (e.g., 3-1)" oninput="updateCard()">
+                    </div>
+                </div>
+
+                <!-- Image Adjustments Layout -->
                 <div class="adjust-tools">
-                    <label>Zoom Image:</label>
-                    <input type="range" id="zoomInput" min="50" max="200" value="100" oninput="adjustImage()">
-                    <label>Move Horizontal:</label>
+                    <span class="tool-title">🖼️ Image Customization</span>
+                    <label>Zoom Graphic:</label>
+                    <input type="range" id="zoomInput" min="50" max="300" value="100" oninput="adjustImage()">
+                    <label>Move Left / Right:</label>
                     <input type="range" id="posXInput" min="0" max="100" value="50" oninput="adjustImage()">
-                    <label>Move Vertical:</label>
+                    <label>Move Up / Down:</label>
                     <input type="range" id="posYInput" min="0" max="100" value="50" oninput="adjustImage()">
                 </div>
 
-                <input type="file" id="imageLoader" accept="image/*" onchange="handleImageUpload(event)">
-                <button class="download-btn" onclick="downloadCard()">DOWNLOAD CARD</button>
-            </div>
-
-            <div class="card epic" id="card">
-                <div class="card-bg"></div>
-                <div class="card-watermark" id="cardWatermark">OVERALL</div>
-                <!-- IMAGE CONTAINER -->
-                <div class="player-frame" id="playerFrame"></div>
-                
-                <div class="rating-badge"><span id="cardRating">77</span></div>
-                
-                <div class="live-perf-bar">
-                    <div class="stat-pill"><span class="label">GS</span><span id="cardGS">0</span></div>
-                    <div class="stat-pill"><span class="label">CS</span><span id="cardCS">0</span></div>
-                    <div class="stat-pill amr-highlight"><span class="label">AMR</span><span id="cardAMR">0.0</span></div>
+                <div class="file-upload-wrapper">
+                    <input type="file" id="imageLoader" accept="image/*" onchange="handleImageUpload(event)">
                 </div>
                 
-                <div class="card-details">
-                    <div class="season-year" id="cardYear">2026</div>
-                    <div class="player-name" id="cardName">PLAYER NAME</div>
+                <button class="download-btn" onclick="downloadCard()">DOWNLOAD PERFECT CARD</button>
+            </div>
+
+            <!-- Main Card Design Structure -->
+            <div class="card-export-wrapper">
+                <div class="card epic" id="card">
+                    <div class="card-bg"></div>
+                    <div class="card-watermark" id="cardWatermark">OVERALL</div>
+                    
+                    <!-- Rendered Adjustable Player Graphic Frame -->
+                    <div class="player-frame" id="playerFrame"></div>
+                    
+                    <div class="rating-badge"><span id="cardRating">76</span></div>
+                    
+                    <!-- Stats Display Columns -->
+                    <div class="live-perf-bar">
+                        <div class="stat-pill"><span class="label">GS</span><span id="cardGS">35</span></div>
+                        <div class="stat-pill"><span class="label">CS</span><span id="cardCS">12</span></div>
+                        <div class="stat-pill amr-highlight"><span class="label">AMR</span><span id="cardAMR">7.8</span></div>
+                    </div>
+
+                    <!-- Dynamic Scoreline Notification Banner for Season 7 Match Days -->
+                    <div id="cardScoreBadge" class="scoreline-badge hidden-element">MD 2 | 3-1</div>
+                    
+                    <!-- Solid Anchor Block preventing Name & Season download omission -->
+                    <div class="card-identity-block">
+                        <div class="season-year" id="cardYear">2026</div>
+                        <div class="player-name" id="cardName">PLAYER NAME</div>
+                    </div>
                 </div>
             </div>
         </div>
