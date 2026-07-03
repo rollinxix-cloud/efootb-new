@@ -3,54 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tournament Engine</title>
+    <title>Tournament Performance Hub</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
     <div class="app-container">
-        <h1>Tournament Performance Hub</h1>
+        <h1>TOURNAMENT PERFORMANCE HUB</h1>
+        
         <div class="tournament-nav">
-            <button class="nav-btn active" onclick="switchSection('home')">🏠 Overall</button>
-            <button class="nav-btn" onclick="switchSection('elite-division')">🛡️ eLite Division</button>
-            <button class="nav-btn" onclick="switchSection('elite-league')">💎 Elite League</button>
-            <button class="nav-btn" onclick="switchSection('pes-camp')">⛺ PES Camp</button>
-            <button class="nav-btn" onclick="switchSection('ultimate-player')">🔥 Ultimate Player</button>
+            <button class="nav-btn active" onclick="switchSection('home')">🏠 OVERALL</button>
+            <button class="nav-btn" onclick="switchSection('elite-division')">🛡️ ELITE DIV</button>
+            <button class="nav-btn" onclick="switchSection('elite-league')">💎 ELITE LEAGUE</button>
         </div>
+
         <div class="workspace">
+            <!-- Controls Form -->
             <div class="controls">
                 <input type="text" id="nameInput" placeholder="Gamer Name" oninput="updateCard()">
                 <input type="number" id="ratingInput" placeholder="Rating (e.g., 105)" oninput="updateCard()">
                 <input type="text" id="yearInput" placeholder="Season (e.g., 2026/27)" oninput="updateCard()">
+                
+                <!-- Fixed Editions Selection -->
                 <select id="cardStyleInput" onchange="updateCard()">
                     <option value="epic">✨ Epic Edition</option>
                     <option value="trending">🔥 Trending Edition</option>
+                    <option value="standard">🔵 Standard Edition</option>
                 </select>
-                <div id="tournamentPerformanceInputs" class="hidden-panel">
+                
+                <!-- Removed AS completely, optimized mobile grid layout -->
+                <div id="tournamentPerformanceInputs" class="stats-input-container">
                     <div class="stats-input-grid">
                         <input type="number" id="gsInput" placeholder="GS" oninput="updateCard()">
-                        <input type="number" id="asInput" placeholder="AS" oninput="updateCard()">
                         <input type="number" id="csInput" placeholder="CS" oninput="updateCard()">
                         <input type="text" id="amrInput" placeholder="AMR" oninput="updateCard()">
                     </div>
                 </div>
-                <input type="file" id="imageLoader" accept="image/*" onchange="handleImageUpload(event)">
-                <button class="download-btn" onclick="downloadCard()">Download Card</button>
+                
+                <div class="file-upload-wrapper">
+                    <input type="file" id="imageLoader" accept="image/*" onchange="handleImageUpload(event)">
+                </div>
+                
+                <button class="download-btn" onclick="downloadCard()">DOWNLOAD CARD</button>
             </div>
-            <div class="card home epic" id="card">
+
+            <!-- Card Output Display -->
+            <div class="card epic" id="card">
                 <div class="card-bg"></div>
-                <div class="card-watermark" id="cardWatermark"></div>
-                <div class="player-frame"><img id="cardPlayerImg" class="player-graphic" src="" alt=""></div>
+                <div class="card-watermark" id="cardWatermark">OVERALL</div>
+                <div class="player-frame">
+                    <img id="cardPlayerImg" class="player-graphic" src="" alt="">
+                </div>
                 <div class="rating-badge"><span id="cardRating">105</span></div>
+                
+                <!-- Performance Statistics Bar -->
                 <div class="live-perf-bar" id="cardPerfStats">
                     <div class="stat-pill"><span class="label">GS</span><span id="cardGS">0</span></div>
-                    <div class="stat-pill"><span class="label">AS</span><span id="cardAS">0</span></div>
                     <div class="stat-pill"><span class="label">CS</span><span id="cardCS">0</span></div>
-                    <div class="stat-pill rating"><span class="label">AMR</span><span id="cardAMR">0.0</span></div>
+                    <!-- AMR Highly Highlighted -->
+                    <div class="stat-pill amr-highlight"><span class="label">AMR</span><span id="cardAMR">0.00</span></div>
                 </div>
+                
                 <div class="card-details">
                     <div class="season-year" id="cardYear">2026/27</div>
-                    <div class="player-name" id="cardName">BINAYA SHRESTHA</div>
+                    <div class="player-name" id="cardName">GAMER NAME</div>
                 </div>
             </div>
         </div>
