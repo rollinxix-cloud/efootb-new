@@ -83,9 +83,9 @@ h1 {
     font-size: 0.95rem;
 }
 
-/* NEW: Champion Control Dashboard Styling */
+/* CHAMPION PANEL SETTINGS CONTROLS */
 .champion-toggle-box {
-    background: linear-gradient(135deg, #131a0e 0%, #0d1527 100%);
+    background: linear-gradient(135deg, #12190f 0%, #0d1527 100%);
     border: 1px dashed #ffd700;
     padding: 12px;
     border-radius: 8px;
@@ -238,12 +238,12 @@ h1 {
     justify-content: space-between;
     box-shadow: 0 10px 30px rgba(0,0,0,0.7);
     box-sizing: border-box;
-    transition: all 0.3s ease;
+    transition: box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* NEW: Premium Gold Aura Card Glow filter for Active Title Holders */
+/* CHAMPION SPECIAL GOLD OUTSIDE RADIAL GLOW */
 .card.champion-glow-active {
-    box-shadow: 0 0 25px rgba(255, 215, 0, 0.45), 0 10px 35px rgba(0, 0, 0, 0.8) !important;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.45), 0 10px 35px rgba(0, 0, 0, 0.85);
 }
 
 .card.epic {
@@ -292,7 +292,7 @@ h1 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 66px;
+    width: 66px; 
     gap: 6px;
     z-index: 5;
 }
@@ -356,40 +356,40 @@ h1 {
     color: #000000;
     padding: 5px 10px;
     border-radius: 4px;
-    font-size: 0.72rem;
+    font-size: 0.72rem; 
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 0.3px;
     box-shadow: 0 0 12px var(--theme-glow);
-    transform: skewX(-14deg);
+    transform: skewX(-14deg); 
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 110px;
+    width: 110px; 
     text-align: center;
 }
 
 .attr-pill-large span {
     display: block;
     transform: skewX(14deg);
-    white-space: nowrap;
+    white-space: nowrap; 
 }
 
-/* NEW: High-End Metallic Champion Label Overlay */
+/* METALLIC CHAMPION OVERLAY LABEL FOR THE CARD */
 .champion-badge-overlay {
     position: absolute;
     right: 15px;
-    top: 96px; /* Dynamically structured below top right match panels */
-    background: linear-gradient(135deg, #fff2b3 0%, #ffd700 45%, #cca100 70%, #ffea80 100%);
+    top: 96px;
+    background: linear-gradient(135deg, #fff3b3 0%, #ffd700 45%, #b38f00 75%, #ffe680 100%);
     border: 1.5px solid #ffffff;
     padding: 4px 8px;
     border-radius: 4px;
     font-size: 0.65rem;
     font-weight: 900;
     color: #000000;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.6px;
     text-transform: uppercase;
-    box-shadow: 0 3px 12px rgba(204, 161, 0, 0.6);
+    box-shadow: 0 3px 10px rgba(179, 143, 0, 0.5);
     transform: skewX(-12deg);
     z-index: 5;
 }
@@ -413,11 +413,11 @@ h1 {
 .stat-pill {
     background: rgba(0, 0, 0, 0.85);
     border: 1px solid var(--theme-color);
-    padding: 5px 14px 5px 10px;
+    padding: 5px 14px 5px 10px; 
     border-radius: 4px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; 
     min-width: 110px; 
     width: fit-content;
 }
@@ -442,8 +442,13 @@ h1 {
     box-shadow: 0 0 12px var(--theme-glow);
 }
 
-.stat-pill.amr-highlight .label { color: #000000; }
-.stat-pill.amr-highlight span:not(.label) { color: #000000; }
+.stat-pill.amr-highlight .label {
+    color: #000000;
+}
+
+.stat-pill.amr-highlight span:not(.label) {
+    color: #000000;
+}
 
 .scoreline-display-wrapper {
     position: absolute;
@@ -547,4 +552,4 @@ h1 {
     color: #ffffff;
     text-transform: uppercase;
     text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.8);
-}
+                                }
