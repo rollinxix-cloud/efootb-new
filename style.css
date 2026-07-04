@@ -83,7 +83,6 @@ h1 {
     font-size: 0.95rem;
 }
 
-/* Redesigned Season 7 Panel for variable match input handling */
 .special-panel {
     background: #1c1304;
     border: 1px solid #ff8c00;
@@ -114,7 +113,6 @@ h1 {
     grid-template-columns: 1fr;
 }
 
-/* Row specifically engineered to handle custom game performance tracking layout structures */
 .s7-stats-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -208,7 +206,6 @@ h1 {
     box-sizing: border-box;
 }
 
-/* Card Skin Engine Updates featuring eFootball color-matching styles */
 .card.epic {
     background: linear-gradient(135deg, #181202 0%, #3a2e05 50%, #181202 100%);
     border: 5px solid #ffd700;
@@ -247,6 +244,7 @@ h1 {
     z-index: 1;
 }
 
+/* FIXED 10/10: Rating Cluster Alignment Geometry */
 .rating-cluster {
     position: absolute;
     top: 15px;
@@ -254,30 +252,34 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
+    justify-content: center;
+    width: 66px; /* Matches the width bounds of the badge + subtle container logic */
+    gap: 6px;
     z-index: 5;
 }
 
 .rating-badge {
-    width: 60px;
-    height: 60px;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.8rem;
+    font-size: 1.9rem;
     font-weight: 900;
 }
 
+/* FIXED 10/10: Stars Center-Locked Perfectly Below Circular Badge */
 .stars-badge {
-    font-size: 0.65rem;
-    letter-spacing: 1px;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 2px 6px;
-    border-radius: 10px;
+    font-size: 0.6rem;
+    letter-spacing: 0.5px;
+    background: rgba(0, 0, 0, 0.75);
+    padding: 3px 6px;
+    border-radius: 12px;
     color: #ffd700;
     font-weight: bold;
     white-space: nowrap;
+    text-align: center;
 }
 
 .player-frame {
@@ -301,48 +303,56 @@ h1 {
     transform-origin: center center;
 }
 
-/* Premium Player Tactical Card Attributes Styling Layout */
 .player-attributes {
     position: absolute;
     left: 15px;
-    top: 115px;
+    top: 120px;
     display: flex;
     flex-direction: column;
     gap: 8px;
     z-index: 5;
 }
 
+/* FIXED 10/10: Premium eFootball Aggressive Ribbon Skew Effect */
 .attr-pill-large {
     background: var(--theme-color);
     color: #000000;
-    padding: 6px 14px;
-    border-radius: 4px;
-    font-size: 1.1rem;
+    padding: 6px 16px;
+    border-radius: 3px;
+    font-size: 1.05rem;
     font-weight: 900;
     text-transform: uppercase;
-    box-shadow: 0 0 10px var(--theme-glow);
+    box-shadow: 0 0 12px var(--theme-glow);
+    transform: skewX(-14deg); /* Sharp angular cut matching official UI profiles */
+    display: inline-block;
 }
 
-/* Tactical eFootball Core Stats Row Layout (Season 7 Exclusive) */
+/* Counter-skews text inside so it reads perfectly upright and ultra-clean */
+.attr-pill-large span {
+    display: block;
+    transform: skewX(14deg);
+}
+
 .live-perf-bar {
     position: absolute;
     left: 15px;
-    top: 162px; /* Positioned right under the playstyle ribbon cleanly without overlaps */
+    top: 168px; 
     display: flex;
     flex-direction: column;
     gap: 6px;
     z-index: 5;
 }
 
+/* FIXED 10/10: Premium Space-Between Formatting & Right Margin Padding Constraints */
 .stat-pill {
     background: rgba(0, 0, 0, 0.85);
     border: 1px solid var(--theme-color);
-    padding: 4px 10px;
+    padding: 5px 14px 5px 10px; /* Right padded dynamically to pull values away from absolute edges */
     border-radius: 4px;
     display: flex;
     align-items: center;
-    gap: 12px;
-    min-width: 95px;
+    justify-content: space-between; /* Pushes Label Left and Values Right flawlessly */
+    min-width: 110px; 
     width: fit-content;
 }
 
@@ -350,15 +360,16 @@ h1 {
     font-size: 0.75rem;
     font-weight: 800;
     color: #bbbbbb;
+    letter-spacing: 0.5px;
 }
 
 .stat-pill span:not(.label) {
     font-size: 0.95rem;
     font-weight: 900;
     color: #ffffff;
+    text-align: right;
 }
 
-/* Highlights AMG cleanly with eFootball brand glow styles */
 .stat-pill.amr-highlight {
     background: var(--theme-color);
     border: none;
@@ -373,7 +384,6 @@ h1 {
     color: #000000;
 }
 
-/* Advanced Vertical Stack Layout for Multi-Matchday telemetry displays */
 .scoreline-display-wrapper {
     position: absolute;
     right: 15px;
@@ -401,7 +411,6 @@ h1 {
     display: none !important;
 }
 
-/* Premium eFootball Identity Block with Futuristic Tech Grid & Accents */
 .card-identity-block {
     position: absolute;
     bottom: 0;
@@ -415,7 +424,6 @@ h1 {
     box-shadow: 0 -4px 20px var(--theme-glow);
 }
 
-/* Vector slashes behind text inspired by real eFootball design formats */
 .card-identity-block::before {
     content: '';
     position: absolute;
@@ -479,3 +487,4 @@ h1 {
     text-transform: uppercase;
     text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.8);
     }
+                                  
