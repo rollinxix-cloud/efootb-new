@@ -44,7 +44,7 @@
                     <option value="2">⭐⭐ 2 Stars</option>
                 </select>
 
-                <!-- NEW: CHAMPION STATUS CONTROL INTERFACE -->
+                <!-- CHAMPION STATUS INTERFACE CONTROLS -->
                 <div class="champion-toggle-box">
                     <label class="champion-switch">
                         <input type="checkbox" id="championToggle" onchange="toggleChampionSelector()">
@@ -60,6 +60,7 @@
 
                 <!-- Tactical Attributes Input Grid -->
                 <div class="stats-input-grid">
+                    <!-- Team Playstyle Dropdown Selector -->
                     <select id="teamPlaystyleInput" onchange="updateCard()">
                         <option value="Possession Game">Possession Game</option>
                         <option value="Quick Counter">Quick Counter</option>
@@ -93,6 +94,7 @@
                         </div>
                     </div>
 
+                    <!-- Dynamic Performance Trackers Grid -->
                     <div class="s7-stats-row">
                         <div class="input-block">
                             <label>GS:</label>
@@ -136,34 +138,40 @@
                     <div class="card-bg"></div>
                     <div class="card-watermark" id="cardWatermark">OVERALL</div>
                     
+                    <!-- Structural container containing a true img node -->
                     <div class="player-frame" id="playerFrameContainer">
                         <img id="playerImage" src="data:image/gif;blank" alt="Player">
                     </div>
                     
+                    <!-- Core Rating & Stars layout cluster -->
                     <div class="rating-cluster">
                         <div class="rating-badge"><span id="cardRating">90</span></div>
                         <div class="stars-badge" id="cardStars">⭐⭐⭐⭐⭐</div>
                     </div>
                     
+                    <!-- Pro eFootball Player Playstyle Showcase -->
                     <div class="player-attributes">
                         <div class="attr-pill-large" id="cardPlaystyle"><span>POSSESSION GAME</span></div>
                     </div>
 
-                    <!-- NEW: DYNAMIC PRO-GRADE CHAMPION EMBLEM LAYER -->
+                    <!-- PREMIUM GEOMETRIC CHAMPION EMBLEM OVERLAY -->
                     <div id="cardChampionBadge" class="champion-badge-overlay hidden-element">
                         <span id="championBadgeText">🏆 S3 CHAMPION</span>
                     </div>
 
+                    <!-- Season 7 Exclusive Performance Overlay Matrix -->
                     <div id="cardPerfBar" class="live-perf-bar hidden-element">
                         <div class="stat-pill"><span class="label">GS</span><span id="cardGS">12</span></div>
                         <div class="stat-pill"><span class="label" id="cardCsGcLabel">CS</span><span id="cardCSGC">2</span></div>
                         <div class="stat-pill amr-highlight"><span class="label">AMG</span><span id="cardAMG">9.1</span></div>
                     </div>
 
+                    <!-- Dynamic Stacked Matchday Display Container -->
                     <div id="cardScoreContainer" class="scoreline-display-wrapper hidden-element">
                         <!-- Built dynamically in JavaScript -->
                     </div>
                     
+                    <!-- Upgraded Premium Identity Block -->
                     <div class="card-identity-block">
                         <div class="deco-slits"><span></span><span></span><span></span></div>
                         <div class="identity-content">
@@ -177,4 +185,5 @@
     </div>
     <script src="script.js"></script>
 </body>
-</html>
+                                                                                     </html>
+                                                                          
