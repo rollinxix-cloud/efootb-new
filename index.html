@@ -44,11 +44,18 @@
                     <option value="2">⭐⭐ 2 Stars</option>
                 </select>
 
-                <!-- Core Stats Grid -->
+                <!-- Tactical Attributes Input Grid -->
                 <div class="stats-input-grid">
-                    <input type="number" id="gsInput" placeholder="GS" oninput="updateCard()">
-                    <input type="number" id="csInput" placeholder="CS" oninput="updateCard()">
-                    <input type="text" id="amrInput" placeholder="AMR" oninput="updateCard()">
+                    <input type="text" id="posInput" placeholder="Position (e.g. CF)" oninput="updateCard()">
+                    
+                    <!-- Team Playstyle Dropdown Selector -->
+                    <select id="teamPlaystyleInput" onchange="updateCard()">
+                        <option value="Possession Game">Possession Game</option>
+                        <option value="Quick Counter">Quick Counter</option>
+                        <option value="Long Ball Counter">Long Ball Counter</option>
+                        <option value="Out Wide">Out Wide</option>
+                        <option value="Long Ball">Long Ball</option>
+                    </select>
                 </div>
 
                 <!-- UPDATED SEASON 7 MATCHDAY PANEL -->
@@ -110,11 +117,10 @@
                         <div class="stars-badge" id="cardStars">⭐⭐⭐⭐⭐</div>
                     </div>
                     
-                    <!-- Stats Display Columns -->
-                    <div class="live-perf-bar">
-                        <div class="stat-pill"><span class="label">GS</span><span id="cardGS">12</span></div>
-                        <div class="stat-pill"><span class="label">CS</span><span id="cardCS">2</span></div>
-                        <div class="stat-pill amr-highlight"><span class="label">AMR</span><span id="cardAMR">9.1</span></div>
+                    <!-- Pro eFootball Player Attributes Showcase -->
+                    <div class="player-attributes">
+                        <div class="attr-pill" id="cardPosition">CF</div>
+                        <div class="attr-pill-large" id="cardPlaystyle">POSSESSION GAME</div>
                     </div>
 
                     <!-- Dynamic Stacked Matchday Display Container -->
