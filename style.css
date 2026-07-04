@@ -114,6 +114,28 @@ h1 {
     grid-template-columns: 1fr;
 }
 
+/* Row specifically engineered to handle custom game performance tracking layout structures */
+.s7-stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 4px;
+    border-top: 1px dashed rgba(255, 140, 0, 0.3);
+    padding-top: 10px;
+}
+
+.s7-stats-row select {
+    background: #2b1f0b;
+    border: 1px solid #ff8c00;
+    color: #ffca7b;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 2px;
+    border-radius: 4px;
+    width: 100%;
+    cursor: pointer;
+}
+
 .input-block {
     display: flex;
     flex-direction: column;
@@ -299,6 +321,56 @@ h1 {
     font-weight: 900;
     text-transform: uppercase;
     box-shadow: 0 0 10px var(--theme-glow);
+}
+
+/* Tactical eFootball Core Stats Row Layout (Season 7 Exclusive) */
+.live-perf-bar {
+    position: absolute;
+    left: 15px;
+    top: 162px; /* Positioned right under the playstyle ribbon cleanly without overlaps */
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 5;
+}
+
+.stat-pill {
+    background: rgba(0, 0, 0, 0.85);
+    border: 1px solid var(--theme-color);
+    padding: 4px 10px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 95px;
+    width: fit-content;
+}
+
+.stat-pill .label {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #bbbbbb;
+}
+
+.stat-pill span:not(.label) {
+    font-size: 0.95rem;
+    font-weight: 900;
+    color: #ffffff;
+}
+
+/* Highlights AMG cleanly with eFootball brand glow styles */
+.stat-pill.amr-highlight {
+    background: var(--theme-color);
+    border: none;
+    box-shadow: 0 0 12px var(--theme-glow);
+}
+
+.stat-pill.amr-highlight .label {
+    color: #000000;
+}
+
+.stat-pill.amr-highlight span:not(.label) {
+    color: #000000;
 }
 
 /* Advanced Vertical Stack Layout for Multi-Matchday telemetry displays */
