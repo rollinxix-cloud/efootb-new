@@ -313,24 +313,30 @@ h1 {
     z-index: 5;
 }
 
-/* FIXED 10/10: Premium eFootball Aggressive Ribbon Skew Effect */
+/* UPDATED: Compact Left-Aligned Tactical Pill to prevent face crowding */
 .attr-pill-large {
     background: var(--theme-color);
     color: #000000;
-    padding: 6px 16px;
-    border-radius: 3px;
-    font-size: 1.05rem;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.72rem; /* Scaled down perfectly to fit long text strings */
     font-weight: 900;
     text-transform: uppercase;
+    letter-spacing: 0.3px;
     box-shadow: 0 0 12px var(--theme-glow);
     transform: skewX(-14deg); /* Sharp angular cut matching official UI profiles */
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 110px; /* Matches the exact width of your stat rows below */
+    text-align: center;
 }
 
-/* Counter-skews text inside so it reads perfectly upright and ultra-clean */
+/* Counter-skews text inside so it remains upright and hyper-legible */
 .attr-pill-large span {
     display: block;
     transform: skewX(14deg);
+    white-space: nowrap; /* Forces text to stay crisp on a single line */
 }
 
 .live-perf-bar {
@@ -487,4 +493,3 @@ h1 {
     text-transform: uppercase;
     text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.8);
     }
-                                  
