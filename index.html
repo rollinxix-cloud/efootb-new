@@ -56,7 +56,7 @@
                     </select>
                 </div>
 
-                <!-- UPDATED SEASON 7 MATCHDAY PANEL -->
+                <!-- UPDATED SEASON 7 PANEL WITH TELEMETRY TRACKERS -->
                 <div id="season7Panel" class="special-panel hidden">
                     <h3>⚠️ Season 7 Active Match Settings</h3>
                     <div class="s7-config-row">
@@ -68,6 +68,7 @@
                             <option value="MD9">MD 9 (Single Final Match)</option>
                         </select>
                     </div>
+                    
                     <div class="s7-inputs-grid">
                         <div class="input-block" id="blockMD_A">
                             <label id="labelMD_A">MD 1 Score:</label>
@@ -76,6 +77,25 @@
                         <div class="input-block" id="blockMD_B">
                             <label id="labelMD_B">MD 2 Score:</label>
                             <input type="text" id="scorelineInputB" placeholder="e.g., 12-3" oninput="updateCard()">
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Performance Trackers Grid -->
+                    <div class="s7-stats-row">
+                        <div class="input-block">
+                            <label>GS:</label>
+                            <input type="number" id="gsInput" placeholder="Goals" value="12" oninput="updateCard()">
+                        </div>
+                        <div class="input-block">
+                            <select id="csGcSelector" onchange="updateCard()">
+                                <option value="CS">CS (Clean Sheet)</option>
+                                <option value="GC">GC (Goals Conceded)</option>
+                            </select>
+                            <input type="number" id="csGcInput" placeholder="Value" value="2" oninput="updateCard()">
+                        </div>
+                        <div class="input-block">
+                            <label>AMG:</label>
+                            <input type="text" id="amgInput" placeholder="Rating" value="9.1" oninput="updateCard()">
                         </div>
                     </div>
                 </div>
@@ -115,9 +135,16 @@
                         <div class="stars-badge" id="cardStars">⭐⭐⭐⭐⭐</div>
                     </div>
                     
-                    <!-- Pro eFootball Player Attributes Showcase -->
+                    <!-- Pro eFootball Player Playstyle Showcase -->
                     <div class="player-attributes">
                         <div class="attr-pill-large" id="cardPlaystyle">POSSESSION GAME</div>
+                    </div>
+
+                    <!-- Season 7 Exclusive Performance Overlay Matrix -->
+                    <div id="cardPerfBar" class="live-perf-bar hidden-element">
+                        <div class="stat-pill"><span class="label">GS</span><span id="cardGS">12</span></div>
+                        <div class="stat-pill"><span class="label" id="cardCsGcLabel">CS</span><span id="cardCSGC">2</span></div>
+                        <div class="stat-pill amr-highlight"><span class="label">AMG</span><span id="cardAMG">9.1</span></div>
                     </div>
 
                     <!-- Dynamic Stacked Matchday Display Container -->
@@ -139,4 +166,5 @@
     </div>
     <script src="script.js"></script>
 </body>
-</html>
+    </html>
+    
