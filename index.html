@@ -11,6 +11,7 @@
     <div class="app-container">
         <h1>TOURNAMENT HUB</h1>
         
+        <!-- Interactive Category Selectors -->
         <div class="navigation-container">
             <label for="tournamentSelector">SELECT ACTIVE TOURNAMENT:</label>
             <select id="tournamentSelector" onchange="handleTournamentChange()">
@@ -35,6 +36,7 @@
                     <option value="standard">🔵 Standard Edition</option>
                 </select>
 
+                <!-- Star Rating Feature Selector -->
                 <select id="starRatingInput" onchange="updateCard()">
                     <option value="5">⭐⭐⭐⭐⭐ 5 Stars</option>
                     <option value="4">⭐⭐⭐⭐ 4 Stars</option>
@@ -42,7 +44,7 @@
                     <option value="2">⭐⭐ 2 Stars</option>
                 </select>
 
-<<<<<<< HEAD
+                <!-- NEW: CHAMPION STATUS CONTROL INTERFACE -->
                 <div class="champion-toggle-box">
                     <label class="champion-switch">
                         <input type="checkbox" id="championToggle" onchange="toggleChampionSelector()">
@@ -56,62 +58,8 @@
                     </div>
                 </div>
 
-                <div class="stats-input-grid">
-                    <select id="teamPlaystyleInput" onchange="updateCard()">
-                        <option value="Possession Game">Possession Game</option>
-                        <option value="Quick Counter">Quick Counter</option>
-                        <option value="Long Ball Counter">Long Ball Counter</option>
-                        <option value="Out Wide">Out Wide</option>
-                        <option value="Long Ball">Long Ball</option>
-                    </select>
-                </div>
-
-                <div id="season7Panel" class="special-panel hidden">
-                    <h3>⚠️ Season 7 Active Match Settings</h3>
-                    <div class="s7-config-row">
-                        <select id="mdSelector" onchange="handleMatchdayTypeChange()">
-                            <option value="MD1_MD2">MD 1 & MD 2 (Dual Match)</option>
-                            <option value="MD3_MD4">MD 3 & MD 4 (Dual Match)</option>
-                            <option value="MD5_MD6">MD 5 & MD 6 (Dual Match)</option>
-                            <option value="MD7_MD8">MD 7 & MD 8 (Dual Match)</option>
-                            <option value="MD9">MD 9 (Single Final Match)</option>
-                        </select>
-                    </div>
-                    
-                    <div class="s7-inputs-grid">
-                        <div class="input-block" id="blockMD_A">
-                            <label id="labelMD_A">MD 1 Score:</label>
-                            <input type="text" id="scorelineInputA" placeholder="e.g., 0-0" oninput="updateCard()">
-                        </div>
-                        <div class="input-block" id="blockMD_B">
-                            <label id="labelMD_B">MD 2 Score:</label>
-                            <input type="text" id="scorelineInputB" placeholder="e.g., 12-3" oninput="updateCard()">
-                        </div>
-                    </div>
-
-                    <div class="s7-stats-row">
-                        <div class="input-block">
-                            <label>GS:</label>
-                            <input type="number" id="gsInput" placeholder="Goals" value="12" oninput="updateCard()">
-                        </div>
-                        <div class="input-block">
-                            <select id="csGcSelector" onchange="updateCard()">
-                                <option value="CS">CS (Clean Sheet)</option>
-                                <option value="GC">GC (Goals Conceded)</option>
-                            </select>
-                            <input type="number" id="csGcInput" placeholder="Value" value="2" oninput="updateCard()">
-                        </div>
-                        <div class="input-block">
-                            <label>AMG:</label>
-                            <input type="text" id="amgInput" placeholder="Rating" value="9.1" oninput="updateCard()">
-                        </div>
-                    </div>
-                </div>
-
-=======
                 <!-- Tactical Attributes Input Grid -->
                 <div class="stats-input-grid">
-                    <!-- Team Playstyle Dropdown Selector -->
                     <select id="teamPlaystyleInput" onchange="updateCard()">
                         <option value="Possession Game">Possession Game</option>
                         <option value="Quick Counter">Quick Counter</option>
@@ -145,7 +93,6 @@
                         </div>
                     </div>
 
-                    <!-- Dynamic Performance Trackers Grid -->
                     <div class="s7-stats-row">
                         <div class="input-block">
                             <label>GS:</label>
@@ -166,7 +113,6 @@
                 </div>
 
                 <!-- Image Adjustments Layout -->
->>>>>>> cb3a6e45c1bb47caedf9f19cd9293113bef61efe
                 <div class="adjust-tools">
                     <span class="tool-title">🖼️ Image Customization</span>
                     <label>Zoom Graphic:</label>
@@ -184,15 +130,12 @@
                 <button class="download-btn" onclick="downloadCard()">DOWNLOAD PERFECT CARD</button>
             </div>
 
+            <!-- Main Card Design Structure -->
             <div class="card-export-wrapper">
                 <div class="card epic" id="card">
                     <div class="card-bg"></div>
                     <div class="card-watermark" id="cardWatermark">OVERALL</div>
                     
- HEAD
-
-                    <!-- Structural container containing a true img node -->
- cb3a6e45c1bb47caedf9f19cd9293113bef61efe
                     <div class="player-frame" id="playerFrameContainer">
                         <img id="playerImage" src="data:image/gif;blank" alt="Player">
                     </div>
@@ -202,39 +145,25 @@
                         <div class="stars-badge" id="cardStars">⭐⭐⭐⭐⭐</div>
                     </div>
                     
-<<<<<<< HEAD
-=======
-                    <!-- Pro eFootball Player Playstyle Showcase (UPDATED WITH INNER SPAN FOR SLANT) -->
->>>>>>> cb3a6e45c1bb47caedf9f19cd9293113bef61efe
                     <div class="player-attributes">
                         <div class="attr-pill-large" id="cardPlaystyle"><span>POSSESSION GAME</span></div>
                     </div>
 
-<<<<<<< HEAD
+                    <!-- NEW: DYNAMIC PRO-GRADE CHAMPION EMBLEM LAYER -->
                     <div id="cardChampionBadge" class="champion-badge-overlay hidden-element">
                         <span id="championBadgeText">🏆 S3 CHAMPION</span>
                     </div>
 
-=======
-                    <!-- Season 7 Exclusive Performance Overlay Matrix -->
->>>>>>> cb3a6e45c1bb47caedf9f19cd9293113bef61efe
                     <div id="cardPerfBar" class="live-perf-bar hidden-element">
                         <div class="stat-pill"><span class="label">GS</span><span id="cardGS">12</span></div>
                         <div class="stat-pill"><span class="label" id="cardCsGcLabel">CS</span><span id="cardCSGC">2</span></div>
                         <div class="stat-pill amr-highlight"><span class="label">AMG</span><span id="cardAMG">9.1</span></div>
                     </div>
 
-<<<<<<< HEAD
-                    <div id="cardScoreContainer" class="scoreline-display-wrapper hidden-element"></div>
-                    
-=======
-                    <!-- Dynamic Stacked Matchday Display Container -->
                     <div id="cardScoreContainer" class="scoreline-display-wrapper hidden-element">
                         <!-- Built dynamically in JavaScript -->
                     </div>
                     
-                    <!-- Upgraded Premium Identity Block -->
->>>>>>> cb3a6e45c1bb47caedf9f19cd9293113bef61efe
                     <div class="card-identity-block">
                         <div class="deco-slits"><span></span><span></span><span></span></div>
                         <div class="identity-content">
@@ -248,5 +177,4 @@
     </div>
     <script src="script.js"></script>
 </body>
-                            </html>
-                            
+</html>

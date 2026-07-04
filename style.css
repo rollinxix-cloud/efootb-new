@@ -284,10 +284,6 @@ h1 {
     z-index: 1;
 }
 
-<<<<<<< HEAD
-=======
-/* FIXED 10/10: Rating Cluster Alignment Geometry */
->>>>>>> cb3a6e45c1bb47caedf9f19cd9293113bef61efe
 .rating-cluster {
     position: absolute;
     top: 15px;
@@ -296,11 +292,7 @@ h1 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-<<<<<<< HEAD
     width: 66px;
-=======
-    width: 66px; /* Matches the width bounds of the badge + subtle container logic */
->>>>>>> cb3a6e45c1bb47caedf9f19cd9293113bef61efe
     gap: 6px;
     z-index: 5;
 }
@@ -316,7 +308,6 @@ h1 {
     font-weight: 900;
 }
 
-/* FIXED 10/10: Stars Center-Locked Perfectly Below Circular Badge */
 .stars-badge {
     font-size: 0.6rem;
     letter-spacing: 0.5px;
@@ -360,25 +351,16 @@ h1 {
     z-index: 5;
 }
 
-<<<<<<< HEAD
-=======
-/* UPDATED: Compact Left-Aligned Tactical Pill to prevent face crowding */
->>>>>>> cb3a6e45c1bb47caedf9f19cd9293113bef61efe
 .attr-pill-large {
     background: var(--theme-color);
     color: #000000;
     padding: 5px 10px;
     border-radius: 4px;
-<<<<<<< HEAD
     font-size: 0.72rem;
-=======
-    font-size: 0.72rem; /* Scaled down perfectly to fit long text strings */
->>>>>>> cb3a6e45c1bb47caedf9f19cd9293113bef61efe
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 0.3px;
     box-shadow: 0 0 12px var(--theme-glow);
-<<<<<<< HEAD
     transform: skewX(-14deg);
     display: flex;
     align-items: center;
@@ -416,21 +398,6 @@ h1 {
     display: block;
     transform: skewX(12deg);
     white-space: nowrap;
-=======
-    transform: skewX(-14deg); /* Sharp angular cut matching official UI profiles */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 110px; /* Matches the exact width of your stat rows below */
-    text-align: center;
-}
-
-/* Counter-skews text inside so it remains upright and hyper-legible */
-.attr-pill-large span {
-    display: block;
-    transform: skewX(14deg);
-    white-space: nowrap; /* Forces text to stay crisp on a single line */
->>>>>>> cb3a6e45c1bb47caedf9f19cd9293113bef61efe
 }
 
 .live-perf-bar {
@@ -443,7 +410,6 @@ h1 {
     z-index: 5;
 }
 
-<<<<<<< HEAD
 .stat-pill {
     background: rgba(0, 0, 0, 0.85);
     border: 1px solid var(--theme-color);
@@ -452,17 +418,6 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: space-between;
-=======
-/* FIXED 10/10: Premium Space-Between Formatting & Right Margin Padding Constraints */
-.stat-pill {
-    background: rgba(0, 0, 0, 0.85);
-    border: 1px solid var(--theme-color);
-    padding: 5px 14px 5px 10px; /* Right padded dynamically to pull values away from absolute edges */
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Pushes Label Left and Values Right flawlessly */
->>>>>>> cb3a6e45c1bb47caedf9f19cd9293113bef61efe
     min-width: 110px; 
     width: fit-content;
 }
@@ -485,22 +440,10 @@ h1 {
     background: var(--theme-color);
     border: none;
     box-shadow: 0 0 12px var(--theme-glow);
-<<<<<<< HEAD
 }
 
 .stat-pill.amr-highlight .label { color: #000000; }
 .stat-pill.amr-highlight span:not(.label) { color: #000000; }
-=======
-}
-
-.stat-pill.amr-highlight .label {
-    color: #000000;
-}
-
-.stat-pill.amr-highlight span:not(.label) {
-    color: #000000;
-}
->>>>>>> cb3a6e45c1bb47caedf9f19cd9293113bef61efe
 
 .scoreline-display-wrapper {
     position: absolute;
@@ -604,8 +547,4 @@ h1 {
     color: #ffffff;
     text-transform: uppercase;
     text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.8);
- HEAD
 }
-
-    }
- cb3a6e45c1bb47caedf9f19cd9293113bef61efe
