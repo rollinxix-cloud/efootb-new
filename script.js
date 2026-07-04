@@ -1,93 +1,101 @@
+function updateCard() {
+    // Basic text updates
+    document.getElementById('cardName').innerText = document.getElementById('nameInput').value || 'GAMER NAME';
+    document.getElementById('cardRating').innerText = document.getElementById('ratingInput').value || '00';
+    document.getElementById('cardYear').innerText = document.getElementById('yearInput').value || 'SEASON';
+    document.getElementById('cardPlaystyle').querySelector('span').innerText = document.getElementById('teamPlaystyleInput').value;
+    
+    // Rating/Star logic
+    const stars = document.getElementById('starRatingInput').value;
+    document.getElementById('cardStars').innerText = '⭐'.repeat(stars);
+
+    // Stats Bar
+    document.getElementById('cardGS').innerText = document.getElementById('gsInput').value;
+    document.getElementById('cardCSGC').innerText = document.getElementById('csGcInput').value;
+    document.getElementById('cardCsGcLabel').innerText = document.getElementById('csGcSelector').value;
+    document.getElementById('cardAMG').innerText = document.getElementById('amgInput').value;
+
+    // Champion Status
+    const isChampion = document.getElementById('championToggle').checked;
+    const championBadge = document.getElementById('cardChampionBadge');
+    const championText = document.getElementById('championBadgeText');
+    const card = document.getElementById('card');
+
+    if (isChampion) {
+        championText.innerText = document.getElementById('championSeasonInput').value === "Season 3 Champion" ? "🏆 S3 CHAMPION" : "🏆 S5 CHAMPION";
+        championBadge.classList.remove('hidden-element');
+        card.classList.add('champion-glow-active');
+    } else {
+        championBadge.classList.add('hidden-element');
+        card.classList.remove('champion-glow-active');
+    }
+}
+
+function toggleChampionSelector() {
+    const isChecked = document.getElementById('championToggle').checked;
+    const container = document.getElementById('championSelectContainer');
+    if (isChecked) container.classList.remove('hidden');
+    else container.classList.add('hidden');
+    updateCard();
+}
+
 function handleTournamentChange() {
-    const selectedTourney = document.getElementById('tournamentSelector').value;
+    const val = document.getElementById('tournamentSelector').value;
     const watermark = document.getElementById('cardWatermark');
+    watermark.innerText = val;
+    
     const s7Panel = document.getElementById('season7Panel');
-    const scoreBadge = document.getElementById('cardScoreBadge');
+    const perfBar = document.getElementById('cardPerfBar');
+    const scoreContainer = document.getElementById('cardScoreContainer');
 
-    watermark.innerText = selectedTourney;
-
-    if (selectedTourney === 'ELITE DIV S7') {
+    if (val === "ELITE DIV S7") {
         s7Panel.classList.remove('hidden');
-        scoreBadge.classList.remove('hidden-element');
+        perfBar.classList.remove('hidden-element');
+        scoreContainer.classList.remove('hidden-element');
     } else {
         s7Panel.classList.add('hidden');
-        scoreBadge.classList.add('hidden-element');
+        perfBar.classList.add('hidden-element');
+        scoreContainer.classList.add('hidden-element');
     }
     updateCard();
 }
 
-// Fixed: Uses CSS transform properties so html2canvas renders image scaling accurately
-function adjustImage() {
-    const zoom = document.getElementById('zoomInput').value;
-    const posX = document.getElementById('posXInput').value;
-    const posY = document.getElementById('posYInput').value;
-    const imgElement = document.getElementById('playerImage');
+function handleMatchdayTypeChange() {
+    const type = document.getElementById('mdSelector').value;
+    const blockA = document.getElementById('blockMD_A');
+    const blockB = document.getElementById('blockMD_B');
     
-    if(imgElement.src && !imgElement.src.includes('data:image/gif;blank')) {
-        imgElement.style.transform = `translate(${posX}px, ${posY}px) scale(${zoom})`;
+    if (type === "MD9") {
+        blockA.classList.add('hidden');
+        blockB.classList.add('hidden');
+    } else {
+        blockA.classList.remove('hidden');
+        blockB.classList.remove('hidden');
     }
+    updateCard();
 }
 
 function handleImageUpload(e) {
     const reader = new FileReader();
     reader.onload = function(event) {
-        const imgElement = document.getElementById('playerImage');
-        imgElement.src = event.target.result;
-        imgElement.onload = function() {
-            adjustImage(); // Initialize alignments
-        };
+        document.getElementById('playerImage').src = event.target.result;
     }
-    if (e.target.files[0]) {
-        reader.readAsDataURL(e.target.files[0]);
-    }
+    reader.readAsDataURL(e.target.files[0]);
 }
 
-function updateCard() {
-    // Identity values
-    document.getElementById('cardName').innerText = document.getElementById('nameInput').value.trim().toUpperCase() || 'PLAYER NAME';
-    document.getElementById('cardRating').innerText = document.getElementById('ratingInput').value || '76';
-    document.getElementById('cardYear').innerText = document.getElementById('yearInput').value.trim() || '2026';
-    
-    // Core stats
-    document.getElementById('cardGS').innerText = document.getElementById('gsInput').value || '35';
-    document.getElementById('cardCS').innerText = document.getElementById('csInput').value || '12';
-    document.getElementById('cardAMR').innerText = document.getElementById('amrInput').value || '7.8';
-    
-    // Dynamic eFootball Star Rating logic
-    const totalStars = parseInt(document.getElementById('starRatingInput').value) || 5;
-    document.getElementById('cardStars').innerText = '⭐'.repeat(totalStars);
-    
-    // Card Style variants
-    const card = document.getElementById('card');
-    card.className = `card ${document.getElementById('cardStyleInput').value}`;
-
-    // Active Season 7 state settings
-    const selectedTourney = document.getElementById('tournamentSelector').value;
-    if (selectedTourney === 'ELITE DIV S7') {
-        const md = document.getElementById('mdSelector').value;
-        const score = document.getElementById('scorelineInput').value.trim() || '0-0';
-        document.getElementById('cardScoreBadge').innerText = `${md} | ${score}`;
-    }
+function adjustImage() {
+    const zoom = document.getElementById('zoomInput').value;
+    const x = document.getElementById('posXInput').value;
+    const y = document.getElementById('posYInput').value;
+    const img = document.getElementById('playerImage');
+    img.style.transform = `scale(${zoom}) translate(${x}px, ${y}px)`;
 }
 
 function downloadCard() {
-    const targetElement = document.getElementById('card');
-    
-    html2canvas(targetElement, {
-        scale: 3, 
-        useCORS: true,
-        allowTaint: true,
-        backgroundColor: null,
-        logging: false
-    }).then(canvas => {
+    html2canvas(document.getElementById('card'), { backgroundColor: null }).then(canvas => {
         const link = document.createElement('a');
-        const filename = document.getElementById('nameInput').value.trim().toLowerCase() || 'player';
-        link.download = `${filename}-efootball-card.png`;
-        link.href = canvas.toDataURL('image/png');
+        link.download = 'champion-card.png';
+        link.href = canvas.toDataURL();
         link.click();
     });
 }
-
-window.onload = function() {
-    updateCard();
-};

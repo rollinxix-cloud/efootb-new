@@ -83,23 +83,101 @@ h1 {
     font-size: 0.95rem;
 }
 
+/* NEW: Champion Control Dashboard Styling */
+.champion-toggle-box {
+    background: linear-gradient(135deg, #131a0e 0%, #0d1527 100%);
+    border: 1px dashed #ffd700;
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.champion-switch {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #ffd700;
+}
+
+.champion-switch input {
+    width: 18px !important;
+    height: 18px !important;
+    cursor: pointer;
+}
+
+#championSelectContainer select {
+    border: 1px solid #ffd700;
+    background: #1a1502;
+    color: #ffd700;
+    font-weight: bold;
+}
+
 .special-panel {
     background: #1c1304;
     border: 1px solid #ff8c00;
-    padding: 10px;
+    padding: 12px;
     border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .special-panel h3 {
     font-size: 0.8rem;
     color: #ff8c00;
-    margin-bottom: 8px;
 }
 
-.s7-grid {
+.s7-config-row select {
+    background: #2b1f0b;
+    border: 1px solid #ff8c00;
+}
+
+.s7-inputs-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 8px;
+    gap: 10px;
+}
+
+.s7-inputs-grid.single-layout {
+    grid-template-columns: 1fr;
+}
+
+.s7-stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 4px;
+    border-top: 1px dashed rgba(255, 140, 0, 0.3);
+    padding-top: 10px;
+}
+
+.s7-stats-row select {
+    background: #2b1f0b;
+    border: 1px solid #ff8c00;
+    color: #ffca7b;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 2px;
+    border-radius: 4px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.input-block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.input-block label {
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: #ffca7b;
 }
 
 .hidden {
@@ -108,7 +186,7 @@ h1 {
 
 .stats-input-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     gap: 8px;
     width: 100%;
 }
@@ -160,32 +238,37 @@ h1 {
     justify-content: space-between;
     box-shadow: 0 10px 30px rgba(0,0,0,0.7);
     box-sizing: border-box;
+    transition: all 0.3s ease;
 }
 
-/* Dynamic Borders & Color Schemes synced directly to Card Selectors */
+/* NEW: Premium Gold Aura Card Glow filter for Active Title Holders */
+.card.champion-glow-active {
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.45), 0 10px 35px rgba(0, 0, 0, 0.8) !important;
+}
+
 .card.epic {
     background: linear-gradient(135deg, #181202 0%, #3a2e05 50%, #181202 100%);
     border: 5px solid #ffd700;
+    --theme-color: #ffd700;
+    --theme-glow: rgba(255, 215, 0, 0.2);
 }
 .card.epic .rating-badge { background: #ffd700; color: #000000; }
-.card.epic .amr-highlight { background: #ffd700; color: #000000; box-shadow: 0 0 14px #ffd700; }
-.card.epic .card-identity-block { border-top: 3px solid #ffd700; }
 
 .card.trending {
     background: linear-gradient(135deg, #1c0303 0%, #440b0b 50%, #1c0303 100%);
     border: 5px solid #ff4500;
+    --theme-color: #ff4500;
+    --theme-glow: rgba(255, 69, 0, 0.2);
 }
 .card.trending .rating-badge { background: #ff4500; color: #ffffff; }
-.card.trending .amr-highlight { background: #ff4500; color: #ffffff; box-shadow: 0 0 14px #ff4500; }
-.card.trending .card-identity-block { border-top: 3px solid #ff4500; }
 
 .card.standard {
     background: linear-gradient(135deg, #010d22 0%, #082352 50%, #010d22 100%);
     border: 5px solid #00bfff;
+    --theme-color: #00bfff;
+    --theme-glow: rgba(0, 191, 255, 0.2);
 }
 .card.standard .rating-badge { background: #00bfff; color: #000000; }
-.card.standard .amr-highlight { background: #00bfff; color: #000000; box-shadow: 0 0 14px #00bfff; }
-.card.standard .card-identity-block { border-top: 3px solid #00bfff; }
 
 .card-watermark {
     position: absolute;
@@ -201,7 +284,6 @@ h1 {
     z-index: 1;
 }
 
-/* Rating Group Structure */
 .rating-cluster {
     position: absolute;
     top: 15px;
@@ -209,33 +291,35 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
+    justify-content: center;
+    width: 66px;
+    gap: 6px;
     z-index: 5;
 }
 
 .rating-badge {
-    width: 60px;
-    height: 60px;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.8rem;
+    font-size: 1.9rem;
     font-weight: 900;
 }
 
 .stars-badge {
-    font-size: 0.65rem;
-    letter-spacing: 1px;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 2px 6px;
-    border-radius: 10px;
+    font-size: 0.6rem;
+    letter-spacing: 0.5px;
+    background: rgba(0, 0, 0, 0.75);
+    padding: 3px 6px;
+    border-radius: 12px;
     color: #ffd700;
     font-weight: bold;
     white-space: nowrap;
+    text-align: center;
 }
 
-/* Fixed Image viewport rendering setup */
 .player-frame {
     position: absolute;
     top: 0;
@@ -257,52 +341,121 @@ h1 {
     transform-origin: center center;
 }
 
-.live-perf-bar {
+.player-attributes {
     position: absolute;
     left: 15px;
-    top: 115px;
+    top: 120px;
     display: flex;
     flex-direction: column;
     gap: 8px;
     z-index: 5;
 }
 
-.stat-pill {
-    background: rgba(0, 0, 0, 0.75);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 6px 12px;
-    border-radius: 30px;
+.attr-pill-large {
+    background: var(--theme-color);
+    color: #000000;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    box-shadow: 0 0 12px var(--theme-glow);
+    transform: skewX(-14deg);
     display: flex;
     align-items: center;
-    gap: 8px;
-    min-width: 90px;
+    justify-content: center;
+    width: 110px;
+    text-align: center;
+}
+
+.attr-pill-large span {
+    display: block;
+    transform: skewX(14deg);
+    white-space: nowrap;
+}
+
+/* NEW: High-End Metallic Champion Label Overlay */
+.champion-badge-overlay {
+    position: absolute;
+    right: 15px;
+    top: 96px; /* Dynamically structured below top right match panels */
+    background: linear-gradient(135deg, #fff2b3 0%, #ffd700 45%, #cca100 70%, #ffea80 100%);
+    border: 1.5px solid #ffffff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.65rem;
+    font-weight: 900;
+    color: #000000;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    box-shadow: 0 3px 12px rgba(204, 161, 0, 0.6);
+    transform: skewX(-12deg);
+    z-index: 5;
+}
+
+.champion-badge-overlay span {
+    display: block;
+    transform: skewX(12deg);
+    white-space: nowrap;
+}
+
+.live-perf-bar {
+    position: absolute;
+    left: 15px;
+    top: 168px; 
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 5;
+}
+
+.stat-pill {
+    background: rgba(0, 0, 0, 0.85);
+    border: 1px solid var(--theme-color);
+    padding: 5px 14px 5px 10px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 110px; 
+    width: fit-content;
 }
 
 .stat-pill .label {
-    font-size: 0.7rem;
-    font-weight: bold;
+    font-size: 0.75rem;
+    font-weight: 800;
     color: #bbbbbb;
+    letter-spacing: 0.5px;
 }
 
 .stat-pill span:not(.label) {
     font-size: 0.95rem;
-    font-weight: bold;
+    font-weight: 900;
+    color: #ffffff;
+    text-align: right;
 }
 
 .stat-pill.amr-highlight {
+    background: var(--theme-color);
     border: none;
-    transform: scale(1.05);
+    box-shadow: 0 0 12px var(--theme-glow);
 }
 
-.stat-pill.amr-highlight span:not(.label) {
-    font-size: 1.05rem;
-    font-weight: 900;
-}
+.stat-pill.amr-highlight .label { color: #000000; }
+.stat-pill.amr-highlight span:not(.label) { color: #000000; }
 
-.scoreline-badge {
+.scoreline-display-wrapper {
     position: absolute;
     right: 15px;
     top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 5;
+}
+
+.scoreline-badge {
     background: #000000;
     color: #00ff66;
     border: 1px solid #00ff66;
@@ -310,7 +463,9 @@ h1 {
     font-size: 0.75rem;
     font-weight: bold;
     border-radius: 4px;
-    z-index: 5;
+    text-align: right;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    white-space: nowrap;
 }
 
 .hidden-element {
@@ -322,25 +477,74 @@ h1 {
     bottom: 0;
     left: 0;
     width: 100%;
-    background: #090e14;
-    padding: 12px 15px;
+    background: linear-gradient(180deg, #070b10 0%, #0d141f 100%);
+    border-top: 3px solid var(--theme-color);
+    padding: 14px 18px;
     z-index: 6;
+    overflow: hidden;
+    box-shadow: 0 -4px 20px var(--theme-glow);
+}
+
+.card-identity-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -20px;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--theme-glow) 0%, transparent 100%);
+    transform: skewX(-25deg);
+    pointer-events: none;
+}
+
+.card-identity-block::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: -10px;
+    width: 40%;
+    height: 4px;
+    background: var(--theme-color);
+    transform: skewX(-45deg);
+    opacity: 0.7;
+}
+
+.deco-slits {
+    position: absolute;
+    right: 20px;
+    top: 12px;
     display: flex;
-    flex-direction: column;
+    gap: 4px;
+}
+
+.deco-slits span {
+    width: 3px;
+    height: 12px;
+    background: var(--theme-color);
+    transform: skewX(-20deg);
+    opacity: 0.4;
+}
+
+.identity-content {
+    position: relative;
+    z-index: 2;
 }
 
 .season-year {
-    font-size: 0.8rem;
-    font-weight: bold;
-    color: #00ff66;
-    letter-spacing: 1px;
-    margin-bottom: 1px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--theme-color);
+    letter-spacing: 1.5px;
+    margin-bottom: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 0 6px var(--theme-glow);
 }
 
 .player-name {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: 900;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
     color: #ffffff;
     text-transform: uppercase;
+    text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.8);
 }
