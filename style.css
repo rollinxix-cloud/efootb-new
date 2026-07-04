@@ -132,7 +132,7 @@ h1 {
 
 .stats-input-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 2fr;
     gap: 8px;
     width: 100%;
 }
@@ -194,7 +194,6 @@ h1 {
     --theme-glow: rgba(255, 215, 0, 0.2);
 }
 .card.epic .rating-badge { background: #ffd700; color: #000000; }
-.card.epic .amr-highlight { background: #ffd700; color: #000000; box-shadow: 0 0 14px #ffd700; }
 
 .card.trending {
     background: linear-gradient(135deg, #1c0303 0%, #440b0b 50%, #1c0303 100%);
@@ -203,7 +202,6 @@ h1 {
     --theme-glow: rgba(255, 69, 0, 0.2);
 }
 .card.trending .rating-badge { background: #ff4500; color: #ffffff; }
-.card.trending .amr-highlight { background: #ff4500; color: #ffffff; box-shadow: 0 0 14px #ff4500; }
 
 .card.standard {
     background: linear-gradient(135deg, #010d22 0%, #082352 50%, #010d22 100%);
@@ -212,7 +210,6 @@ h1 {
     --theme-glow: rgba(0, 191, 255, 0.2);
 }
 .card.standard .rating-badge { background: #00bfff; color: #000000; }
-.card.standard .amr-highlight { background: #00bfff; color: #000000; box-shadow: 0 0 14px #00bfff; }
 
 .card-watermark {
     position: absolute;
@@ -282,7 +279,8 @@ h1 {
     transform-origin: center center;
 }
 
-.live-perf-bar {
+/* Premium Player Tactical Card Attributes Styling Layout */
+.player-attributes {
     position: absolute;
     left: 15px;
     top: 115px;
@@ -292,36 +290,27 @@ h1 {
     z-index: 5;
 }
 
-.stat-pill {
-    background: rgba(0, 0, 0, 0.75);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 6px 12px;
-    border-radius: 30px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    min-width: 90px;
+.attr-pill {
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid var(--theme-color);
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #ffffff;
+    display: inline-block;
+    width: fit-content;
 }
 
-.stat-pill .label {
-    font-size: 0.7rem;
-    font-weight: bold;
-    color: #bbbbbb;
-}
-
-.stat-pill span:not(.label) {
-    font-size: 0.95rem;
-    font-weight: bold;
-}
-
-.stat-pill.amr-highlight {
-    border: none;
-    transform: scale(1.05);
-}
-
-.stat-pill.amr-highlight span:not(.label) {
-    font-size: 1.05rem;
+.attr-pill-large {
+    background: var(--theme-color);
+    color: #000000;
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-size: 1.1rem;
     font-weight: 900;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px var(--theme-glow);
 }
 
 /* Advanced Vertical Stack Layout for Multi-Matchday telemetry displays */
@@ -352,7 +341,7 @@ h1 {
     display: none !important;
 }
 
-/* UPGRADED: Premium eFootball Identity Block with Futuristic Tech Grid & Accents */
+/* Premium eFootball Identity Block with Futuristic Tech Grid & Accents */
 .card-identity-block {
     position: absolute;
     bottom: 0;
@@ -429,4 +418,5 @@ h1 {
     color: #ffffff;
     text-transform: uppercase;
     text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.8);
-        }
+                          }
+                              
