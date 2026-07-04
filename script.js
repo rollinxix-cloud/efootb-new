@@ -3,16 +3,19 @@ function handleTournamentChange() {
     const watermark = document.getElementById('cardWatermark');
     const s7Panel = document.getElementById('season7Panel');
     const scoreContainer = document.getElementById('cardScoreContainer');
+    const perfBar = document.getElementById('cardPerfBar');
 
     watermark.innerText = selectedTourney;
 
     if (selectedTourney === 'ELITE DIV S7') {
         s7Panel.classList.remove('hidden');
         scoreContainer.classList.remove('hidden-element');
+        perfBar.classList.remove('hidden-element'); // Show custom stats matrix on card
         handleMatchdayTypeChange(); // Ensure input configurations match selection state
     } else {
         s7Panel.classList.add('hidden');
         scoreContainer.classList.add('hidden-element');
+        perfBar.classList.add('hidden-element'); // Hide custom stats matrix from card
     }
     updateCard();
 }
@@ -84,9 +87,20 @@ function updateCard() {
     const card = document.getElementById('card');
     card.className = `card ${document.getElementById('cardStyleInput').value}`;
 
-    // Active Matchday array compiler loop
     const selectedTourney = document.getElementById('tournamentSelector').value;
+    
+    // Process Season 7 Exclusive Matchdays and Core Stats
     if (selectedTourney === 'ELITE DIV S7') {
+        // Update Core Performance Overlays
+        document.getElementById('cardGS').innerText = document.getElementById('gsInput').value || '0';
+        
+        const currentCsGcLabel = document.getElementById('csGcSelector').value;
+        document.getElementById('cardCsGcLabel').innerText = currentCsGcLabel;
+        document.getElementById('cardCSGC').innerText = document.getElementById('csGcInput').value || '0';
+        
+        document.getElementById('cardAMG').innerText = document.getElementById('amgInput').value.trim() || '0.0';
+
+        // Active Matchday array compiler loop
         const mdValue = document.getElementById('mdSelector').value;
         const scoreA = document.getElementById('scorelineInputA').value.trim() || '0-0';
         const scoreB = document.getElementById('scorelineInputB').value.trim() || '0-0';
@@ -126,4 +140,4 @@ function downloadCard() {
 window.onload = function() {
     updateCard();
 };
-                           
+                                                 
