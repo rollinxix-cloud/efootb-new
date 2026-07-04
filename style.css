@@ -83,23 +83,47 @@ h1 {
     font-size: 0.95rem;
 }
 
+/* Redesigned Season 7 Panel for variable match input handling */
 .special-panel {
     background: #1c1304;
     border: 1px solid #ff8c00;
-    padding: 10px;
+    padding: 12px;
     border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .special-panel h3 {
     font-size: 0.8rem;
     color: #ff8c00;
-    margin-bottom: 8px;
 }
 
-.s7-grid {
+.s7-config-row select {
+    background: #2b1f0b;
+    border: 1px solid #ff8c00;
+}
+
+.s7-inputs-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 8px;
+    gap: 10px;
+}
+
+.s7-inputs-grid.single-layout {
+    grid-template-columns: 1fr;
+}
+
+.input-block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.input-block label {
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: #ffca7b;
 }
 
 .hidden {
@@ -162,30 +186,33 @@ h1 {
     box-sizing: border-box;
 }
 
-/* Dynamic Borders & Color Schemes synced directly to Card Selectors */
+/* Card Skin Engine Updates featuring eFootball color-matching styles */
 .card.epic {
     background: linear-gradient(135deg, #181202 0%, #3a2e05 50%, #181202 100%);
     border: 5px solid #ffd700;
+    --theme-color: #ffd700;
+    --theme-glow: rgba(255, 215, 0, 0.2);
 }
 .card.epic .rating-badge { background: #ffd700; color: #000000; }
 .card.epic .amr-highlight { background: #ffd700; color: #000000; box-shadow: 0 0 14px #ffd700; }
-.card.epic .card-identity-block { border-top: 3px solid #ffd700; }
 
 .card.trending {
     background: linear-gradient(135deg, #1c0303 0%, #440b0b 50%, #1c0303 100%);
     border: 5px solid #ff4500;
+    --theme-color: #ff4500;
+    --theme-glow: rgba(255, 69, 0, 0.2);
 }
 .card.trending .rating-badge { background: #ff4500; color: #ffffff; }
 .card.trending .amr-highlight { background: #ff4500; color: #ffffff; box-shadow: 0 0 14px #ff4500; }
-.card.trending .card-identity-block { border-top: 3px solid #ff4500; }
 
 .card.standard {
     background: linear-gradient(135deg, #010d22 0%, #082352 50%, #010d22 100%);
     border: 5px solid #00bfff;
+    --theme-color: #00bfff;
+    --theme-glow: rgba(0, 191, 255, 0.2);
 }
 .card.standard .rating-badge { background: #00bfff; color: #000000; }
 .card.standard .amr-highlight { background: #00bfff; color: #000000; box-shadow: 0 0 14px #00bfff; }
-.card.standard .card-identity-block { border-top: 3px solid #00bfff; }
 
 .card-watermark {
     position: absolute;
@@ -201,7 +228,6 @@ h1 {
     z-index: 1;
 }
 
-/* Rating Group Structure */
 .rating-cluster {
     position: absolute;
     top: 15px;
@@ -235,7 +261,6 @@ h1 {
     white-space: nowrap;
 }
 
-/* Fixed Image viewport rendering setup */
 .player-frame {
     position: absolute;
     top: 0;
@@ -299,10 +324,18 @@ h1 {
     font-weight: 900;
 }
 
-.scoreline-badge {
+/* Advanced Vertical Stack Layout for Multi-Matchday telemetry displays */
+.scoreline-display-wrapper {
     position: absolute;
     right: 15px;
     top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 5;
+}
+
+.scoreline-badge {
     background: #000000;
     color: #00ff66;
     border: 1px solid #00ff66;
@@ -310,37 +343,90 @@ h1 {
     font-size: 0.75rem;
     font-weight: bold;
     border-radius: 4px;
-    z-index: 5;
+    text-align: right;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    white-space: nowrap;
 }
 
 .hidden-element {
     display: none !important;
 }
 
+/* UPGRADED: Premium eFootball Identity Block with Futuristic Tech Grid & Accents */
 .card-identity-block {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    background: #090e14;
-    padding: 12px 15px;
+    background: linear-gradient(180deg, #070b10 0%, #0d141f 100%);
+    border-top: 3px solid var(--theme-color);
+    padding: 14px 18px;
     z-index: 6;
+    overflow: hidden;
+    box-shadow: 0 -4px 20px var(--theme-glow);
+}
+
+/* Vector slashes behind text inspired by real eFootball design formats */
+.card-identity-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -20px;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--theme-glow) 0%, transparent 100%);
+    transform: skewX(-25deg);
+    pointer-events: none;
+}
+
+.card-identity-block::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: -10px;
+    width: 40%;
+    height: 4px;
+    background: var(--theme-color);
+    transform: skewX(-45deg);
+    opacity: 0.7;
+}
+
+.deco-slits {
+    position: absolute;
+    right: 20px;
+    top: 12px;
     display: flex;
-    flex-direction: column;
+    gap: 4px;
+}
+
+.deco-slits span {
+    width: 3px;
+    height: 12px;
+    background: var(--theme-color);
+    transform: skewX(-20deg);
+    opacity: 0.4;
+}
+
+.identity-content {
+    position: relative;
+    z-index: 2;
 }
 
 .season-year {
-    font-size: 0.8rem;
-    font-weight: bold;
-    color: #00ff66;
-    letter-spacing: 1px;
-    margin-bottom: 1px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--theme-color);
+    letter-spacing: 1.5px;
+    margin-bottom: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 0 6px var(--theme-glow);
 }
 
 .player-name {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: 900;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
     color: #ffffff;
     text-transform: uppercase;
-}
+    text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.8);
+        }
