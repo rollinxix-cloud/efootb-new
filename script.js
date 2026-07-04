@@ -73,9 +73,6 @@ function updateCard() {
     document.getElementById('cardRating').innerText = document.getElementById('ratingInput').value || '90';
     document.getElementById('cardYear').innerText = document.getElementById('yearInput').value.trim() || 'ELITE DIVISION LEAGUE S7';
     
-    // Updated Attributes Integration
-    document.getElementById('cardPosition').innerText = document.getElementById('posInput').value.trim().toUpperCase() || 'CF';
-    
     // Team Playstyle selection translation mapping
     document.getElementById('cardPlaystyle').innerText = document.getElementById('teamPlaystyleInput').value.toUpperCase();
     
@@ -129,4 +126,4 @@ function downloadCard() {
 window.onload = function() {
     updateCard();
 };
-            
+                           
