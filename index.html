@@ -51,20 +51,31 @@
                     <input type="text" id="amrInput" placeholder="AMR" oninput="updateCard()">
                 </div>
 
-                <!-- SPECIAL SEASON 7 MATCHDAY PANEL -->
+                <!-- UPDATED SEASON 7 MATCHDAY PANEL -->
                 <div id="season7Panel" class="special-panel hidden">
                     <h3>⚠️ Season 7 Active Match Settings</h3>
-                    <div class="s7-grid">
-                        <select id="mdSelector" onchange="updateCard()">
-                            <option value="MD 2">Match Day 2 (MD 2)</option>
-                            <option value="MD 4">Match Day 4 (MD 4)</option>
-                            <option value="MD 6">Match Day 6 (MD 6)</option>
+                    <div class="s7-config-row">
+                        <select id="mdSelector" onchange="handleMatchdayTypeChange()">
+                            <option value="MD1_MD2">MD 1 & MD 2 (Dual Match)</option>
+                            <option value="MD3_MD4">MD 3 & MD 4 (Dual Match)</option>
+                            <option value="MD5_MD6">MD 5 & MD 6 (Dual Match)</option>
+                            <option value="MD7_MD8">MD 7 & MD 8 (Dual Match)</option>
+                            <option value="MD9">MD 9 (Single Final Match)</option>
                         </select>
-                        <input type="text" id="scorelineInput" placeholder="Scoreline (e.g., 3-1)" oninput="updateCard()">
+                    </div>
+                    <div class="s7-inputs-grid">
+                        <div class="input-block" id="blockMD_A">
+                            <label id="labelMD_A">MD 1 Score:</label>
+                            <input type="text" id="scorelineInputA" placeholder="e.g., 0-0" oninput="updateCard()">
+                        </div>
+                        <div class="input-block" id="blockMD_B">
+                            <label id="labelMD_B">MD 2 Score:</label>
+                            <input type="text" id="scorelineInputB" placeholder="e.g., 12-3" oninput="updateCard()">
+                        </div>
                     </div>
                 </div>
 
-                <!-- Image Adjustments Layout (Modified to use pixel shifting for export safety) -->
+                <!-- Image Adjustments Layout -->
                 <div class="adjust-tools">
                     <span class="tool-title">🖼️ Image Customization</span>
                     <label>Zoom Graphic:</label>
@@ -88,31 +99,36 @@
                     <div class="card-bg"></div>
                     <div class="card-watermark" id="cardWatermark">OVERALL</div>
                     
-                    <!-- Fixed: Structural container containing a true img node to prevent download shrinking -->
+                    <!-- Structural container containing a true img node -->
                     <div class="player-frame" id="playerFrameContainer">
                         <img id="playerImage" src="data:image/gif;blank" alt="Player">
                     </div>
                     
                     <!-- Core Rating & Stars layout cluster -->
                     <div class="rating-cluster">
-                        <div class="rating-badge"><span id="cardRating">76</span></div>
+                        <div class="rating-badge"><span id="cardRating">90</span></div>
                         <div class="stars-badge" id="cardStars">⭐⭐⭐⭐⭐</div>
                     </div>
                     
                     <!-- Stats Display Columns -->
                     <div class="live-perf-bar">
-                        <div class="stat-pill"><span class="label">GS</span><span id="cardGS">35</span></div>
-                        <div class="stat-pill"><span class="label">CS</span><span id="cardCS">12</span></div>
-                        <div class="stat-pill amr-highlight"><span class="label">AMR</span><span id="cardAMR">7.8</span></div>
+                        <div class="stat-pill"><span class="label">GS</span><span id="cardGS">12</span></div>
+                        <div class="stat-pill"><span class="label">CS</span><span id="cardCS">2</span></div>
+                        <div class="stat-pill amr-highlight"><span class="label">AMR</span><span id="cardAMR">9.1</span></div>
                     </div>
 
-                    <!-- Dynamic Scoreline Notification Banner -->
-                    <div id="cardScoreBadge" class="scoreline-badge hidden-element">MD 2 | 3-1</div>
+                    <!-- Dynamic Stacked Matchday Display Container -->
+                    <div id="cardScoreContainer" class="scoreline-display-wrapper hidden-element">
+                        <!-- Built dynamically in JavaScript -->
+                    </div>
                     
-                    <!-- Solid Anchor Identity Block -->
+                    <!-- Upgraded Premium Identity Block with Geometric eFootball Styling Layouts -->
                     <div class="card-identity-block">
-                        <div class="season-year" id="cardYear">2026</div>
-                        <div class="player-name" id="cardName">PLAYER NAME</div>
+                        <div class="deco-slits"><span></span><span></span><span></span></div>
+                        <div class="identity-content">
+                            <div class="season-year" id="cardYear">ELITE DIVISION LEAGUE S7</div>
+                            <div class="player-name" id="cardName">AMAX HOOD</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -120,4 +136,5 @@
     </div>
     <script src="script.js"></script>
 </body>
-</html>
+    </html>
+    
