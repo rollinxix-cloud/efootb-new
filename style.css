@@ -344,60 +344,67 @@ h1 {
 .player-attributes {
     position: absolute;
     left: 15px;
-    top: 120px;
+    top: 125px; /* Safely aligns exactly under the stars badge container */
     display: flex;
     flex-direction: column;
     gap: 8px;
     z-index: 5;
 }
 
+/* PREMIUM FROSTED GLASS CAPSULE DESIGN FOR TACTICAL PLAYSTYLES */
 .attr-pill-large {
-    background: var(--theme-color);
-    color: #000000;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 0.72rem; 
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
-    box-shadow: 0 0 12px var(--theme-glow);
-    transform: skewX(-14deg); 
+    background: rgba(10, 10, 15, 0.7) !important;
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    padding: 5px 12px !important;
+    border-radius: 50px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    width: 125px; 
+    transform: none !important; /* Removes harsh graphic distortions */
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 110px; 
     text-align: center;
 }
 
 .attr-pill-large span {
     display: block;
-    transform: skewX(14deg);
-    white-space: nowrap; 
+    transform: none !important;
+    color: #ffffff !important;
+    font-size: 0.62rem !important; /* Clean formatting for longer selections */
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    white-space: normal; 
+    line-height: 1.2;
 }
 
-/* METALLIC CHAMPION OVERLAY LABEL FOR THE CARD */
+/* INTEGRATED PLATINUM/GOLD CHAMPION IDENTITY LABEL */
 .champion-badge-overlay {
-    position: absolute;
-    right: 15px;
-    top: 96px;
     background: linear-gradient(135deg, #fff3b3 0%, #ffd700 45%, #b38f00 75%, #ffe680 100%);
-    border: 1.5px solid #ffffff;
-    padding: 4px 8px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 3px 8px;
     border-radius: 4px;
     font-size: 0.65rem;
     font-weight: 900;
     color: #000000;
-    letter-spacing: 0.6px;
+    letter-spacing: 0.8px;
     text-transform: uppercase;
-    box-shadow: 0 3px 10px rgba(179, 143, 0, 0.5);
-    transform: skewX(-12deg);
-    z-index: 5;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    width: fit-content;
+    margin-bottom: 6px;
+    transform: none !important;
 }
 
 .champion-badge-overlay span {
     display: block;
-    transform: skewX(12deg);
+    transform: none !important;
     white-space: nowrap;
+}
+
+.hidden-element, .identity-content .champion-badge-overlay.hidden-element {
+    display: none !important;
 }
 
 .live-perf-bar {
@@ -473,10 +480,6 @@ h1 {
     white-space: nowrap;
 }
 
-.hidden-element {
-    display: none !important;
-}
-
 .card-identity-block {
     position: absolute;
     bottom: 0;
@@ -533,6 +536,9 @@ h1 {
 .identity-content {
     position: relative;
     z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .season-year {
@@ -552,4 +558,5 @@ h1 {
     color: #ffffff;
     text-transform: uppercase;
     text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.8);
-                                }
+    }
+    
