@@ -54,14 +54,16 @@ function toggleChampionSelector() {
     updateCard();
 }
 
+/* FIXED ALIGNMENT: APPLIES POSITION MODIFICATIONS TO WRAPPER TO PREVENT CANVAS DISTORTION */
 function adjustImage() {
     const zoom = document.getElementById('zoomInput').value;
     const posX = document.getElementById('posXInput').value;
     const posY = document.getElementById('posYInput').value;
+    const wrapper = document.getElementById('playerImageWrapper');
     const imgElement = document.getElementById('playerImage');
     
-    if(imgElement.src && !imgElement.src.includes('data:image/gif;blank')) {
-        imgElement.style.transform = `translate(${posX}px, ${posY}px) scale(${zoom})`;
+    if(imgElement.src && !imgElement.src.includes('data:image/gif;base64') && wrapper) {
+        wrapper.style.transform = `translate(${posX}px, ${posY}px) scale(${zoom})`;
     }
 }
 
@@ -170,4 +172,4 @@ function downloadCard() {
 window.onload = function() {
     updateCard();
 };
-        
+                                                  
