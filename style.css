@@ -4,12 +4,6 @@
     padding: 0;
 }
 
-/* 1. ANIMATION: LIQUID GOLD SHIMMER */
-@keyframes liquidGold {
-    0% { background-position: -100% 0; }
-    100% { background-position: 200% 0; }
-}
-
 body {
     background-color: #060b11;
     color: #ffffff;
@@ -247,10 +241,9 @@ h1 {
     transition: box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* SUPERCHARGED CHAMPION AURA */
+/* CHAMPION SPECIAL GOLD OUTSIDE RADIAL GLOW */
 .card.champion-glow-active {
-    box-shadow: 0 0 40px rgba(255, 215, 0, 0.4), 0 0 15px rgba(255, 215, 0, 0.2);
-    border: 5px solid #ffd700;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.45), 0 10px 35px rgba(0, 0, 0, 0.85);
 }
 
 .card.epic {
@@ -348,37 +341,38 @@ h1 {
     transform-origin: center center;
 }
 
-/* COMMAND CENTER: ALIGNED ATTRIBUTES */
 .player-attributes {
     position: absolute;
     left: 15px;
-    top: 130px; 
+    top: 125px; /* Safely aligns exactly under the stars badge container */
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
     z-index: 5;
 }
 
+/* PREMIUM FROSTED GLASS CAPSULE DESIGN FOR TACTICAL PLAYSTYLES */
 .attr-pill-large {
-    background: rgba(0, 0, 0, 0.7) !important;
-    backdrop-filter: blur(12px) saturate(200%);
-    -webkit-backdrop-filter: blur(12px) saturate(200%);
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    padding: 6px 12px !important;
-    border-radius: 6px; 
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    width: 130px; 
+    background: rgba(10, 10, 15, 0.7) !important;
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    padding: 5px 12px !important;
+    border-radius: 50px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    width: 125px; 
+    transform: none !important; /* Removes harsh graphic distortions */
     display: flex;
     align-items: center;
     justify-content: center;
-    transform: none !important;
+    text-align: center;
 }
 
 .attr-pill-large span {
     display: block;
     transform: none !important;
     color: #ffffff !important;
-    font-size: 0.62rem !important;
+    font-size: 0.62rem !important; /* Clean formatting for longer selections */
     font-weight: 800;
     letter-spacing: 0.5px;
     text-transform: uppercase;
@@ -386,22 +380,20 @@ h1 {
     line-height: 1.2;
 }
 
-/* SUPERCHARGED SHINY CHAMPION BADGE */
+/* INTEGRATED PLATINUM/GOLD CHAMPION IDENTITY LABEL */
 .champion-badge-overlay {
-    background: linear-gradient(90deg, #b38f00 0%, #fff3b3 50%, #b38f00 100%);
-    background-size: 200% 100%;
-    animation: liquidGold 3s infinite linear;
+    background: linear-gradient(135deg, #fff3b3 0%, #ffd700 45%, #b38f00 75%, #ffe680 100%);
     border: 1px solid rgba(255, 255, 255, 0.4);
-    padding: 4px 10px;
+    padding: 3px 8px;
     border-radius: 4px;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 900;
     color: #000000;
-    letter-spacing: 1px;
+    letter-spacing: 0.8px;
     text-transform: uppercase;
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
-    margin-bottom: 8px;
-    display: inline-block;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    width: fit-content;
+    margin-bottom: 6px;
     transform: none !important;
 }
 
@@ -415,11 +407,10 @@ h1 {
     display: none !important;
 }
 
-/* COMMAND CENTER: ALIGNED STATS */
 .live-perf-bar {
     position: absolute;
     left: 15px;
-    top: 165px; 
+    top: 168px; 
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -567,5 +558,5 @@ h1 {
     color: #ffffff;
     text-transform: uppercase;
     text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.8);
-                       }
-    
+    }
+        
