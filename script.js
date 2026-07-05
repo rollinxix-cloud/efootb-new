@@ -170,4 +170,4 @@ function downloadCard() {
 window.onload = function() {
     updateCard();
 };
-    
+        
